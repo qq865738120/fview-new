@@ -1,0 +1,6 @@
+@import "./reset.css";
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

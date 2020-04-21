@@ -1,0 +1,38 @@
+{
+  "name": "auto-show",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "export": "npm run build && next export",
+    "build-test": "cross-env DEPLOY_ENV=test npm run build",
+    "start-test": "cross-env DEPLOY_ENV=test npm run start",
+    "build-prod": "cross-env DEPLOY_ENV=prod npm run build",
+    "start-prod": "cross-env DEPLOY_ENV=prod npm run start"
+  },
+  "dependencies": {
+    "@baiducloud/sdk": "^1.0.0-rc.14",
+    "@types/jquery": "^3.3.35",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.3",
+    "jquery": "^3.5.0",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "next": "9.3.4",
+    "photo-sphere-viewer": "^3.6.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "three": "^0.115.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.33",
+    "babel-preset-react-app": "^9.1.2",
+    "cross-env": "^7.0.2",
+    "typescript": "^3.8.3"
+  }
+}
