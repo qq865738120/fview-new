@@ -1,5 +1,9 @@
 @import "./reset.css";
 
+body {
+  font-family: '方正兰亭细黑';
+}
+
 p {
   margin-block-start: 0;
   margin-block-end: 0;

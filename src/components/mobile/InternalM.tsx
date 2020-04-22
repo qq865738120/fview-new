@@ -1,9 +1,13 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import AppStore from "../../stores/app";
-import PhotoSphereViewer from "photo-sphere-viewer/dist/photo-sphere-viewer.js";
+import PhotoSphereViewer from "photo-sphere-viewer/dist/photo-sphere-viewer";
+
 import CarStore from "../../stores/car";
 import { toJS } from "mobx";
+import Link from "next/link";
+import { withRouter } from "next/dist/client/router";
+import { WithRouterProps } from "next/dist/client/with-router";
 
 interface InternalProps {
   appStore?: AppStore;
@@ -17,8 +21,8 @@ interface InternalState {
 @inject("appStore")
 @inject("carStore")
 @observer
-export default class InternalM extends React.PureComponent<
-  InternalProps,
+class InternalM extends React.PureComponent<
+  InternalProps & WithRouterProps,
   InternalState
 > {
   constructor(props) {
@@ -26,7 +30,7 @@ export default class InternalM extends React.PureComponent<
   }
 
   componentDidMount() {
-    const current = "ZTC350H";
+    const current = this.props.router.query.name as string;
     const index = 0;
 
     const { outData } = this.props.carStore;
@@ -34,17 +38,27 @@ export default class InternalM extends React.PureComponent<
     console.log("data", data.data[current]["int"][index].url);
 
     const psv = new PhotoSphereViewer({
-      // panorama: data.data[current]["int"][index].url,
-      panorama: "https://zwj-test.bj.bcebos.com/test-3d.jpg?authorization=bce-auth-v1/e0202c39b4d044dc8bea53bef849eb98/2020-04-21T15:40:30Z/300/host/b5fdf9f3ff6d07b0d157bbb69babad7f3cd44a3f1b48636381fb12e7cfcaaed9",
+      panorama: data.data[current]["int"][index].url,
       container: document.getElementById("viewer-360"), // 放全景图的元素
       navbar: false,
     });
   }
 
   render() {
+    const { router } = this.props
+
     return (
       <section className="internal-page">
         <div id="viewer-360"></div>
+
+        <div className="bottom-bar">
+          <Link href={{ pathname: "/out", query: { name: router.query.name } }} prefetch>
+            <div className="panoramic">
+              <img className="panoramic-icon" src="/static/panoramic.png"></img>
+              全景
+            </div>
+          </Link>
+        </div>
 
         <style jsx>
           {`
@@ -57,9 +71,34 @@ export default class InternalM extends React.PureComponent<
               width: 100%;
               height: 100%;
             }
+
+            .bottom-bar {
+              position: absolute;
+              bottom: 0.3rem;
+              left: 0;
+              right: 0;
+              z-index: 100000
+            }
+
+            .panoramic {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              font-size: 0.2rem;
+              transform: rotate(90deg);
+            }
+
+            .panoramic-icon {
+              width: 0.8rem;
+              height: 0.8rem;
+              margin-bottom: 0.1rem;
+            }
           `}
         </style>
       </section>
     );
   }
 }
+
+export default withRouter(InternalM)

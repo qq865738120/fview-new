@@ -2,6 +2,8 @@ import * as React from "react";
 import { observer, inject } from "mobx-react";
 import AppStore from "../../stores/app";
 import MokeData from "../../moke";
+import Link from "next/link";
+const axios = require("axios");
 
 interface IndexMProps {
   appStore?: AppStore;
@@ -17,7 +19,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
     };
   }
 
-  componentDidMount() {}
+  async componentDidMount() {}
 
   render() {
     const { list } = this.state;
@@ -27,7 +29,9 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <div className="list">
           {list.map((item, index) => (
             <div className="item" key={index}>
-              <img className="item-img" src={item.image} />
+              <Link href={{ pathname: "/out", query: { name: "ZTC350H" } }}>
+                <img className="item-img" src={item.image} />
+              </Link>
             </div>
           ))}
         </div>
