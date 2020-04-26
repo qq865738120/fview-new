@@ -20,6 +20,7 @@
     this.width = params.width;
     this.angle = params.angle;
     this.angleType = params.angleType;
+    this.handlerMove = params.handlerMove;
 
     function assignOperations() {
       selector.mousedown(function (target) {
@@ -103,7 +104,7 @@
           "background-image",
           "url(" + imagePath(currentImage, angle[angleType]) + ")"
         );
-      } else if (currentY - newY > 40) {
+      } else if (currentY - newY > 50) {
         console.log("currentY =" + currentY + " newY =" + newY);
         console.log("currentY - newY = " + (currentY - newY));
         currentY = newY;
@@ -112,7 +113,7 @@
           "background-image",
           "url(" + imagePath(currentImage, angle[angleType]) + ")"
         );
-      } else if (currentY - newY < -40) {
+      } else if (currentY - newY < -50) {
         console.log("currentY =" + currentY + " newY =" + newY);
         console.log("currentY - newY = " + (currentY - newY));
         currentY = newY;
@@ -122,6 +123,7 @@
           "url(" + imagePath(currentImage, angle[angleType]) + ")"
         );
       }
+      handlerMove(currentImage, angleType);
     }
 
     function forceLoadAllImages() {
@@ -139,9 +141,9 @@
       for (var n = 2; n <= totalImages; n++) {
         appropriateImageUrl = imagePath(n, angle[angleType]);
         selector.append(
-          "<img src='" + appropriateImageUrl + "' style='display:none;'>"
+          "<img data=" + angle[angleType] + " src='" + appropriateImageUrl + "' style='display:none;'>"
         );
-        $("<img/>")
+        $("<img data=" + angle[angleType] +  "/>")
           .attr("src", appropriateImageUrl)
           .css("display", "none")
           .load(function () {
@@ -152,6 +154,27 @@
             }
           });
       }
+
+      (angle || []).map((item, index) => {
+        if (index !== angleType) {
+          for (let n = 1; n <= totalImages; n++) {
+            appropriateImageUrl = imagePath(n, item);
+            selector.append(
+              "<img data=" + item + " src='" + appropriateImageUrl + "' style='display:none;'>"
+            );
+            $("<img data=" + item +  "/>")
+              .attr("src", appropriateImageUrl)
+              .css("display", "none")
+              .load(function () {
+                loadedImages++;
+                if (loadedImages >= totalImages) {
+                  $("#VCc").removeClass("onLoadingDiv");
+                  $("#VCc").text("");
+                }
+              });
+          } 
+        }
+      })
     }
 
     function initializeOverlayDiv() {

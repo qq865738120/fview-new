@@ -31,7 +31,7 @@ class InternalM extends React.PureComponent<
 
   componentDidMount() {
     const current = this.props.router.query.name as string;
-    const index = 0;
+    const index = this.props.router.query.index as string;
 
     const { outData } = this.props.carStore;
     const data = toJS(outData);

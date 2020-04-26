@@ -20,19 +20,27 @@ interface OutMProps {
 class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
   constructor(props) {
     super(props);
+    this.state = {
+      currType: "ZTC350H",
+      currImgIndex: 1,
+      angle: ["fv", "vv"],
+      angleType: 0,
+    };
   }
 
   componentDidMount() {
-    const current = this.props.router.query.name as string;
-    const angle = "fv";
-    console.log("current", current);
+    // const current = this.props.router.query.name as string;
+    this.setState({ currType: this.props.router.query.name });
+    const { currType, angle, angleType } = this.state;
 
     const { outData } = this.props.carStore;
     const data = toJS(outData);
     ($("#display-3d") as any).vc3dEye &&
       ($("#display-3d") as any).vc3dEye({
         imagePath: (index, ang?) => {
-          const arr = data.data[current][ang || "fv"][index - 1].url.split("/");
+          const arr = data.data[currType][ang || "fv"][index - 1].url.split(
+            "/"
+          );
           const auto = arr[5].split("?")[1];
           return (
             arr[0] +
@@ -53,13 +61,20 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
         imageExtension: "png",
         width: "100vw",
         height: "100vh",
-        angle: ["fv", "vv"],
-        angleType: 0,
+        angle,
+        angleType, // 角度类型，对应angle中的数组索引
+        handlerMove: (index, ang?) => {
+          console.log("11111", index, angleType);
+          this.setState({ currImgIndex: index, angleType });
+        },
       });
   }
 
   render() {
-    const { router } = this.props
+    const { router } = this.props;
+    const { outData } = this.props.carStore;
+    const data = toJS(outData);
+    const { currType, currImgIndex, angle, angleType } = this.state;
 
     return (
       <section className="internal-warp">
@@ -112,13 +127,31 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
               height: 0.7rem;
               margin-bottom: 0.1rem;
             }
+
+            .hot-point {
+              width: 0.18rem;
+              height: 0.18rem;
+              background-color: #0779e4;
+              border-radius: 100%;
+              opacity: 0.6;
+              position: absolute;
+              box-shadow: 0.01rem 0.01rem 0.12rem #043058;
+            }
           `}
         </style>
         <section className="internal-page mobile">
           <div id="display-3d"></div>
 
           <div className="bottom-bar">
-            <Link href={{ pathname: "/internal", query: { name: router.query.name } }} prefetch>
+            <Link
+              href={{
+                pathname: "/internal",
+                query: {
+                  name: (router && router.query && router.query.name) || "",
+                  index: 0
+                },
+              }}
+            >
               <div className="panoramic">
                 <img
                   className="panoramic-icon"
@@ -127,16 +160,31 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
                 内饰
               </div>
             </Link>
-            <Link href="/" prefetch>
+            <Link href="/">
               <div className="panoramic">
-                <img
-                  className="panoramic-icon"
-                  src="/static/home.png"
-                ></img>
+                <img className="panoramic-icon" src="/static/home.png"></img>
                 主页
               </div>
             </Link>
           </div>
+
+          {(
+            data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]
+              .hotPoint || []
+          ).map((item, index) => (
+            <Link key={index} href={{
+              pathname: "/internal",
+              query: {
+                name: (router && router.query && router.query.name) || "",
+                index,
+              },
+            }}>
+              <div
+                className="hot-point"
+                style={{ left: item.x, top: item.y }}
+              />
+            </Link>
+          ))}
         </section>
       </section>
     );
