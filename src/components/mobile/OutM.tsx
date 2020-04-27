@@ -33,6 +33,8 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
     this.setState({ currType: this.props.router.query.name });
     const { currType, angle, angleType } = this.state;
 
+    alert(this.props.router.query.name)
+
     const { outData } = this.props.carStore;
     const data = toJS(outData);
     ($("#display-3d") as any).vc3dEye &&

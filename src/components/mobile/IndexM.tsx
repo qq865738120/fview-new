@@ -39,7 +39,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <style jsx>
           {`
             .index-page {
-              background-image: url("https://t1.hddhhn.com/uploads/tu/201812/622/484.jpg");
+              background-image: url("/static/bg-index.png");
               background-size: 100%;
               // height: 50rem;
             }
@@ -57,6 +57,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
             .list > .item > .item-img {
               width: 5rem;
               height: 5rem;
+              object-fit: cover;
             }
           `}
         </style>

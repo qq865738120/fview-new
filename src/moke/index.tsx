@@ -12,20 +12,52 @@ export default class MokeData {
   getAutoList() {
     return [
       {
-        name: "ZTC350H",
-        image: "https://www.diyimei.net/upload/2018/1523807721171765.jpg"
+        name: "QY25H",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC250A",
+        image: "/static/car-2.png"
+      },
+      {
+        name: "ZTC251E",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC251V",
+        image: "/static/car-1.png"
       },
       {
         name: "ZTC350H",
-        image: "https://www.diyimei.net/upload/2018/1523807721767773.jpg"
+        image: "/static/car-1.png"
       },
       {
-        name: "ZTC350H",
-        image: "https://www.diyimei.net/upload/2018/1523807722388733.jpg"
+        name: "ZTC500H",
+        image: "/static/car-1.png"
       },
       {
-        name: "ZTC350H",
-        image: "https://www.diyimei.net/upload/2018/1523807721171765.jpg"
+        name: "ZTC550H",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC550R",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC700H",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC800E",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC800H-2",
+        image: "/static/car-1.png"
+      },
+      {
+        name: "ZTC800H",
+        image: "/static/car-1.png"
       }
     ]
   }
