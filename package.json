@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "export": "npm run build && next export",
     "build-test": "cross-env DEPLOY_ENV=test npm run build",
     "start-test": "cross-env DEPLOY_ENV=test npm run start",
