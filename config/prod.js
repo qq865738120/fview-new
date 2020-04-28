@@ -1,6 +1,7 @@
 module.exports = {
   env: 'prod',
   protocol: 'http',
-  host: 'zoomlion-rd.360view.iotnc.cn',
-  port: '80'
+  host: '127.0.0.1',
+  port: '3000',
+  apiHost: "http://zoomlion-rd.360view.iotnc.cn"
 }

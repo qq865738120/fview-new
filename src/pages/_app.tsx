@@ -21,7 +21,7 @@ class MyMobxApp extends App {
     const { publicRuntimeConfig } = getConfig();
     const ctx: any = appContext.ctx
     const appProps = await App.getInitialProps(appContext)
-    const outData = await axios.get(publicRuntimeConfig.protocol + "://" + publicRuntimeConfig.host + ":" + publicRuntimeConfig.port + "/api/out/data")
+    const outData = await axios.get(publicRuntimeConfig.apiHost + "/api/out/data")
     
     ctx.mobxStore = initializeStore({ appStore: { title: "", isMobile: isMobile(ctx.req) }, carStore: { outData: outData.data } })
 

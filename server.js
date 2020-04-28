@@ -48,6 +48,6 @@ app.prepare().then(() => {
     }
   }).listen(config[DEPLOY_ENV].port, err => {
     if (err) throw err
-    console.log('> Ready on http://' + config[DEPLOY_ENV].host + ':' + config[DEPLOY_ENV].port)
+    console.log('> Ready on http://' + "127.0.0.1" + ':' + config[DEPLOY_ENV].port)
   })
 })
