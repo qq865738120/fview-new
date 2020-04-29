@@ -21,7 +21,7 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
   constructor(props) {
     super(props);
     this.state = {
-      currType: "ZTC350H",
+      currType: "",
       currImgIndex: 1,
       angle: ["fv", "vv"],
       angleType: 0,
@@ -31,19 +31,23 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
   componentDidMount() {
     // const current = this.props.router.query.name as string;
     this.setState({ currType: this.props.router.query.name });
-    const { currType, angle, angleType } = this.state;
+    const { angle, angleType } = this.state;
 
-    alert(this.props.router.query.name)
+    // alert(this.props.router.query.name);
+    console.log("this.props.router.query.name", this.props.router.query.name);
+    const currType = this.props.router.query.name as string;
 
     const { outData } = this.props.carStore;
     const data = toJS(outData);
+    console.log("data", data.data[currType], currType);
+
     ($("#display-3d") as any).vc3dEye &&
       ($("#display-3d") as any).vc3dEye({
         imagePath: (index, ang?) => {
-          const arr = data.data[currType][ang || "fv"][index - 1].url.split(
-            "/"
-          );
-          const auto = arr[5].split("?")[1];
+          const arr =
+            data.data[currType] &&
+            data.data[currType][ang || "fv"][index - 1].url.split("/");
+          const auto = ((arr && arr[5]) || "").split("?")[1];
           return (
             arr[0] +
             "//" +
@@ -77,6 +81,7 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
     const { outData } = this.props.carStore;
     const data = toJS(outData);
     const { currType, currImgIndex, angle, angleType } = this.state;
+    console.log("DATA", data.data[currType], currType);
 
     return (
       <section className="internal-warp">
@@ -150,7 +155,7 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
                 pathname: "/internal",
                 query: {
                   name: (router && router.query && router.query.name) || "",
-                  index: 0
+                  index: 0,
                 },
               }}
             >
@@ -171,16 +176,21 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
           </div>
 
           {(
-            data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]
-              .hotPoint || []
+            (data.data[currType] &&
+              data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]
+                .hotPoint) ||
+            []
           ).map((item, index) => (
-            <Link key={index} href={{
-              pathname: "/internal",
-              query: {
-                name: (router && router.query && router.query.name) || "",
-                index,
-              },
-            }}>
+            <Link
+              key={index}
+              href={{
+                pathname: "/internal",
+                query: {
+                  name: (router && router.query && router.query.name) || "",
+                  index,
+                },
+              }}
+            >
               <div
                 className="hot-point"
                 style={{ left: item.x, top: item.y }}

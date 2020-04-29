@@ -9,7 +9,7 @@ for (let i = 1; i <= 36; i++) {
  * 外室数据
  */
 const outData = {
-  ZTC350H: {
+  ZTC251V: {
     fv: [
       ...imageUrls
     ],
@@ -17,8 +17,8 @@ const outData = {
       ...imageUrls
     ],
     int: [
-      { url: "ZTC350H1.jpg" },
-      { url: "ZTC350H2.jpg" }
+      { url: "ZTC251V1.jpg" },
+      { url: "ZTC251V2.jpg" }
     ]
   }
 }

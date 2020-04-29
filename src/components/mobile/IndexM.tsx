@@ -29,7 +29,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <div className="list">
           {list.map((item, index) => (
             <div className="item" key={index}>
-              <Link href={{ pathname: "/out", query: { name: "ZTC350H" } }}>
+              <Link href={{ pathname: "/out", query: { name: item.name } }}>
                 <img className="item-img" src={item.image} />
               </Link>
             </div>
