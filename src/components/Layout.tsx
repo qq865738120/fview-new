@@ -25,6 +25,14 @@ export default class Layout extends React.PureComponent<
     window.addEventListener("resize", () => {
       this.resize();
     });
+
+    document.body.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault(); //阻止默认事件(上下滑动)
+      },
+      { passive: false }
+    );
   }
 
   resize() {
@@ -33,6 +41,11 @@ export default class Layout extends React.PureComponent<
       document.getElementsByTagName("html")[0].style.fontSize = "";
       appStore.setIsMobile(false);
     } else {
+      var width = window.innerWidth,
+        height = window.innerHeight,
+        style = "";
+      
+
       // 设计稿宽度, 750|640|520
       var designWith = 750;
 
@@ -45,7 +58,7 @@ export default class Layout extends React.PureComponent<
       var fontSize = 100 * vw;
 
       // 设置html的font-size, 可以直接写在 css 里面
-      document.getElementsByTagName("html")[0].style.fontSize = fontSize + "vw";
+      document.getElementsByTagName("html")[0].style.fontSize = fontSize + (width >= height ? "vh" : "vw");
       appStore.setIsMobile(true);
     }
   }
@@ -81,7 +94,7 @@ export default class Layout extends React.PureComponent<
             <meta
               name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-            />   
+            />
           </Header>
           {this.props.children}
         </>

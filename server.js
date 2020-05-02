@@ -40,6 +40,7 @@ app.prepare().then(() => {
 
     if (pathname === '/api/out/data') {
       console.table(query)
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.writeHead(200, {'Content-Type': 'application/json'});
       res.write(JSON.stringify({ data: cacheOutData }))
       res.end();

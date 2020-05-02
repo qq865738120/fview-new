@@ -6,18 +6,27 @@ import MokeData from "../../moke";
 import CarStore from "../../stores/car";
 import { toJS } from "mobx";
 import Link from "next/link";
-import { Router, withRouter } from "next/dist/client/router";
+import { withRouter } from "next/dist/client/router";
 import { WithRouterProps } from "next/dist/client/with-router";
+import Router from "next/router";
+import PhotoSwipeWap, { PhotoSwipeItems } from "../common/PhotoSwipe";
 
 interface OutMProps {
   appStore?: AppStore;
   carStore?: CarStore;
 }
 
+interface OutMState {
+  photoItems: PhotoSwipeItems[];
+}
+
 @inject("appStore")
 @inject("carStore")
 @observer
-class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
+class OutM extends React.PureComponent<
+  OutMProps & WithRouterProps,
+  any & OutMState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,21 +34,38 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
       currImgIndex: 1,
       angle: ["fv", "vv"],
       angleType: 0,
+      style360: {},
+      panoramicStyle: {},
+      photoItems: [],
+      isShow: false
     };
   }
 
   componentDidMount() {
-    // const current = this.props.router.query.name as string;
+    // if (!this.props.router.query.name) {
+    //   Router.replace("/")
+    //   return;
+    // }
+
     this.setState({ currType: this.props.router.query.name });
     const { angle, angleType } = this.state;
 
-    // alert(this.props.router.query.name);
-    console.log("this.props.router.query.name", this.props.router.query.name);
     const currType = this.props.router.query.name as string;
 
     const { outData } = this.props.carStore;
     const data = toJS(outData);
     console.log("data", data.data[currType], currType);
+
+    const photoItems = (data.data[currType][angle[angleType]] || []).map(
+      (item: any) => {
+        return {
+          src: item.url || "",
+          w: "1080",
+          h: "1920",
+        };
+      }
+    );
+    this.setState({ photoItems });
 
     ($("#display-3d") as any).vc3dEye &&
       ($("#display-3d") as any).vc3dEye({
@@ -74,13 +100,75 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
           this.setState({ currImgIndex: index, angleType });
         },
       });
+
+    setTimeout(() => {
+      this.resize();
+      window.addEventListener("resize", () => {
+        this.resize();
+      });
+    }, 0);
+  }
+
+  resize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    if (width > height) {
+      //横屏
+      this.setState({
+        style360: {
+          transformOrigin: "left top",
+          transform: `rotate(-90deg) translate(${-height}px, 0px)`,
+          width: height + "px",
+          height: width + "px",
+        },
+        panoramicStyle: {
+          transform: `rotate(0)`,
+        },
+      });
+    } else {
+      //竖屏
+      this.setState({
+        style360: {},
+        panoramicStyle: {},
+      });
+    }
+  }
+
+  onPhotoClick = () => {
+    const { angle, angleType } = this.state;
+
+    const currType = this.props.router.query.name as string;
+
+    const { outData } = this.props.carStore;
+    const data = toJS(outData);
+
+    const photoItems = (data.data[currType][angle[angleType]] || []).map(
+      (item: any) => {
+        return {
+          src: item.url || "",
+          w: "1080",
+          h: "1920",
+        };
+      }
+    );
+    this.setState({ photoItems });
+    this.setState({ photoItems: [...photoItems], isShow: true })
   }
 
   render() {
     const { router } = this.props;
     const { outData } = this.props.carStore;
     const data = toJS(outData);
-    const { currType, currImgIndex, angle, angleType } = this.state;
+    const {
+      currType,
+      currImgIndex,
+      angle,
+      angleType,
+      style360,
+      panoramicStyle,
+      photoItems,
+      isShow
+    } = this.state;
     console.log("DATA", data.data[currType], currType);
 
     return (
@@ -147,9 +235,13 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
           `}
         </style>
         <section className="internal-page mobile">
-          <div id="display-3d"></div>
+          <div id="display-3d" style={{ ...style360 }}></div>
 
           <div className="bottom-bar">
+            <div className="panoramic" style={{ ...panoramicStyle }} onClick={this.onPhotoClick}>
+              <img className="panoramic-icon" src="/static/photo.png"></img>
+              预览图
+            </div>
             <Link
               href={{
                 pathname: "/internal",
@@ -159,7 +251,7 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
                 },
               }}
             >
-              <div className="panoramic">
+              <div className="panoramic" style={{ ...panoramicStyle }}>
                 <img
                   className="panoramic-icon"
                   src="/static/panoramic.png"
@@ -168,7 +260,7 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
               </div>
             </Link>
             <Link href="/">
-              <div className="panoramic">
+              <div className="panoramic" style={{ ...panoramicStyle }}>
                 <img className="panoramic-icon" src="/static/home.png"></img>
                 主页
               </div>
@@ -198,6 +290,8 @@ class OutM extends React.PureComponent<OutMProps & WithRouterProps, any> {
             </Link>
           ))}
         </section>
+
+        {isShow && <PhotoSwipeWap items={photoItems} index={currImgIndex - 1} />}
       </section>
     );
   }

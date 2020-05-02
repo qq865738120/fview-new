@@ -14,19 +14,18 @@ interface InternalProps {
   carStore?: CarStore;
 }
 
-interface InternalState {
-  store: AppStore;
-}
-
 @inject("appStore")
 @inject("carStore")
 @observer
 class InternalM extends React.PureComponent<
   InternalProps & WithRouterProps,
-  InternalState
+  any
 > {
   constructor(props) {
     super(props);
+    this.state = {
+      panoramicStyle: {},
+    };
   }
 
   componentDidMount() {
@@ -42,18 +41,50 @@ class InternalM extends React.PureComponent<
       container: document.getElementById("viewer-360"), // 放全景图的元素
       navbar: false,
     });
+
+    setTimeout(() => {
+      this.resize();
+      window.addEventListener("resize", () => {
+        this.resize();
+      });
+    }, 0);
+  }
+
+  resize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    if (width > height) {
+      //横屏
+      this.setState({
+        panoramicStyle: {
+          transform: `rotate(0)`,
+        },
+      });
+    } else {
+      //竖屏
+      this.setState({
+        panoramicStyle: {},
+      });
+    }
   }
 
   render() {
-    const { router } = this.props
+    const { router } = this.props;
+    const { panoramicStyle } = this.state;
 
     return (
       <section className="internal-page">
         <div id="viewer-360"></div>
 
         <div className="bottom-bar">
-          <Link href={{ pathname: "/out", query: { name: router.query.name } }} prefetch>
-            <div className="panoramic">
+          <Link
+            href={{
+              pathname: "/out",
+              query: { name: router && router.query && router.query.name },
+            }}
+            prefetch
+          >
+            <div className="panoramic" style={{ ...panoramicStyle }}>
               <img className="panoramic-icon" src="/static/panoramic.png"></img>
               全景
             </div>
@@ -65,6 +96,7 @@ class InternalM extends React.PureComponent<
             .internal-page {
               width: 100vw;
               height: 100vh;
+              overflow: hidden;
             }
 
             #viewer-360 {
@@ -77,11 +109,14 @@ class InternalM extends React.PureComponent<
               bottom: 0.3rem;
               left: 0;
               right: 0;
-              z-index: 100000
+              z-index: 100000;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
 
             .panoramic {
-              display: flex;
+              display: inline-flex;
               align-items: center;
               justify-content: center;
               flex-direction: column;
@@ -101,4 +136,4 @@ class InternalM extends React.PureComponent<
   }
 }
 
-export default withRouter(InternalM)
+export default withRouter(InternalM);

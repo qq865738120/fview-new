@@ -84,71 +84,118 @@
     }
 
     function loadAppropriateImage(newX, newY) {
-      if (currentX - newX > 50) {
-        console.log("currentX =" + currentX + " newX =" + newX);
-        console.log("currentX-newX=" + (currentX - newX));
-        currentX = newX;
-        // currentImage = --currentImage < 1 ? totalImages : currentImage;
-        // console.log("currentImage=" + currentImage);
-        // selector.css(
-        //   "background-image",
-        //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        // );
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      if (width > height) {
+        // 横屏
+        if (currentX - newX > 25) {
+          console.log("currentX =" + currentX + " newX =" + newX);
+          console.log("currentX-newX=" + (currentX - newX));
+          currentX = newX;
+          currentImage = --currentImage < 1 ? totalImages : currentImage;
+          console.log("currentImage=" + currentImage);
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentX - newX < -25) {
+          console.log("currentX =" + currentX + " newX =" + newX);
+          console.log("currentX-newX=" + (currentX - newX));
+          currentX = newX;
+          currentImage = ++currentImage > totalImages ? 1 : currentImage;
+          console.log("currentImage=" + currentImage);
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentY - newY > 50) {
+          console.log("currentY =" + currentY + " newY =" + newY);
+          console.log("currentY - newY = " + (currentY - newY));
+          currentY = newY;
+          angleType = 0;
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentY - newY < -50) {
+          console.log("currentY =" + currentY + " newY =" + newY);
+          console.log("currentY - newY = " + (currentY - newY));
+          currentY = newY;
+          angleType = 1;
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        }
+      } else {
+        // 竖屏
+        if (currentX - newX > 50) {
+          console.log("currentX =" + currentX + " newX =" + newX);
+          console.log("currentX-newX=" + (currentX - newX));
+          currentX = newX;
+          // currentImage = --currentImage < 1 ? totalImages : currentImage;
+          // console.log("currentImage=" + currentImage);
+          // selector.css(
+          //   "background-image",
+          //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          // );
 
-        angleType = 1;
-        selector.css(
-          "background-image",
-          "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        );
-      } else if (currentX - newX < -50) {
-        console.log("currentX =" + currentX + " newX =" + newX);
-        console.log("currentX-newX=" + (currentX - newX));
-        currentX = newX;
-        // currentImage = ++currentImage > totalImages ? 1 : currentImage;
-        // console.log("currentImage=" + currentImage);
-        // selector.css(
-        //   "background-image",
-        //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        // );
+          angleType = 1;
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentX - newX < -50) {
+          console.log("currentX =" + currentX + " newX =" + newX);
+          console.log("currentX-newX=" + (currentX - newX));
+          currentX = newX;
+          // currentImage = ++currentImage > totalImages ? 1 : currentImage;
+          // console.log("currentImage=" + currentImage);
+          // selector.css(
+          //   "background-image",
+          //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          // );
 
-        angleType = 0;
-        selector.css(
-          "background-image",
-          "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        );
-      } else if (currentY - newY > 25) {
-        console.log("currentY =" + currentY + " newY =" + newY);
-        console.log("currentY - newY = " + (currentY - newY));
-        currentY = newY;
-        // angleType = 0;
-        // selector.css(
-        //   "background-image",
-        //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        // );
+          angleType = 0;
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentY - newY > 25) {
+          console.log("currentY =" + currentY + " newY =" + newY);
+          console.log("currentY - newY = " + (currentY - newY));
+          currentY = newY;
+          // angleType = 0;
+          // selector.css(
+          //   "background-image",
+          //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          // );
 
-        currentImage = --currentImage < 1 ? totalImages : currentImage;
-        console.log("currentImage=" + currentImage);
-        selector.css(
-          "background-image",
-          "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        );
-      } else if (currentY - newY < -25) {
-        console.log("currentY =" + currentY + " newY =" + newY);
-        console.log("currentY - newY = " + (currentY - newY));
-        currentY = newY;
-        // angleType = 1;
-        // selector.css(
-        //   "background-image",
-        //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        // );
-        
-        currentImage = ++currentImage > totalImages ? 1 : currentImage;
-        console.log("currentImage=" + currentImage);
-        selector.css(
-          "background-image",
-          "url(" + imagePath(currentImage, angle[angleType]) + ")"
-        );
+          currentImage = --currentImage < 1 ? totalImages : currentImage;
+          console.log("currentImage=" + currentImage);
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        } else if (currentY - newY < -25) {
+          console.log("currentY =" + currentY + " newY =" + newY);
+          console.log("currentY - newY = " + (currentY - newY));
+          currentY = newY;
+          // angleType = 1;
+          // selector.css(
+          //   "background-image",
+          //   "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          // );
+
+          currentImage = ++currentImage > totalImages ? 1 : currentImage;
+          console.log("currentImage=" + currentImage);
+          selector.css(
+            "background-image",
+            "url(" + imagePath(currentImage, angle[angleType]) + ")"
+          );
+        }
       }
+
       handlerMove(currentImage, angleType);
     }
 
@@ -167,9 +214,13 @@
       for (var n = 2; n <= totalImages; n++) {
         appropriateImageUrl = imagePath(n, angle[angleType]);
         selector.append(
-          "<img data=" + angle[angleType] + " src='" + appropriateImageUrl + "' style='display:none;'>"
+          "<img data=" +
+            angle[angleType] +
+            " src='" +
+            appropriateImageUrl +
+            "' style='display:none;'>"
         );
-        $("<img data=" + angle[angleType] +  "/>")
+        $("<img data=" + angle[angleType] + "/>")
           .attr("src", appropriateImageUrl)
           .css("display", "none")
           .load(function () {
@@ -186,9 +237,13 @@
           for (let n = 1; n <= totalImages; n++) {
             appropriateImageUrl = imagePath(n, item);
             selector.append(
-              "<img data=" + item + " src='" + appropriateImageUrl + "' style='display:none;'>"
+              "<img data=" +
+                item +
+                " src='" +
+                appropriateImageUrl +
+                "' style='display:none;'>"
             );
-            $("<img data=" + item +  "/>")
+            $("<img data=" + item + "/>")
               .attr("src", appropriateImageUrl)
               .css("display", "none")
               .load(function () {
@@ -198,9 +253,9 @@
                   $("#VCc").text("");
                 }
               });
-          } 
+          }
         }
-      })
+      });
     }
 
     function initializeOverlayDiv() {
