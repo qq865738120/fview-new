@@ -82,7 +82,6 @@ class InternalM extends React.PureComponent<
               pathname: "/out",
               query: { name: router && router.query && router.query.name },
             }}
-            prefetch
           >
             <div className="panoramic" style={{ ...panoramicStyle }}>
               <img className="panoramic-icon" src="/static/panoramic.png"></img>
