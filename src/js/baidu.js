@@ -8,13 +8,10 @@ module.exports = {
     
   showImage:function(key){
     var config = {
-      endpoint: "http://fview-zl-0416.bj.bcebos.com",
-      // endpoint: "http://zwj-test.bj.bcebos.com",
+      endpoint: "http://fview-zl-0416.cdn.bcebos.com",
       credentials: {
         ak: "350f1c898e5d41ef9d95b8eddb39ba82", //您的AK
         sk: "1448aae559f044c0a1f8b35c630114a7", //您的SK
-        // ak: "e0202c39b4d044dc8bea53bef849eb98",
-        // sk: "ab396c378613412a9281914d42e48be9"
       },
     };
 

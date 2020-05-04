@@ -37,7 +37,7 @@ class OutM extends React.PureComponent<
       style360: {},
       panoramicStyle: {},
       photoItems: [],
-      isShow: false
+      isShow: false,
     };
   }
 
@@ -110,28 +110,30 @@ class OutM extends React.PureComponent<
   }
 
   resize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    if (width > height) {
-      //横屏
-      this.setState({
-        style360: {
-          transformOrigin: "left top",
-          transform: `rotate(-90deg) translate(${-height}px, 0px)`,
-          width: height + "px",
-          height: width + "px",
-        },
-        panoramicStyle: {
-          transform: `rotate(0)`,
-        },
-      });
-    } else {
-      //竖屏
-      this.setState({
-        style360: {},
-        panoramicStyle: {},
-      });
-    }
+    setTimeout(() => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      if (width > height) {
+        //横屏
+        this.setState({
+          style360: {
+            transformOrigin: "left top",
+            transform: `rotate(-90deg) translate(${-height}px, 0px)`,
+            width: height + "px",
+            height: width + "px",
+          },
+          panoramicStyle: {
+            transform: `rotate(0)`,
+          },
+        });
+      } else {
+        //竖屏
+        this.setState({
+          style360: {},
+          panoramicStyle: {},
+        });
+      }
+    }, 150);
   }
 
   onPhotoClick = () => {
@@ -152,7 +154,17 @@ class OutM extends React.PureComponent<
       }
     );
     this.setState({ photoItems });
-    this.setState({ photoItems: [...photoItems], isShow: true })
+    this.setState({ photoItems: [...photoItems], isShow: true });
+  };
+
+  onInternalClick() {
+    window.location.href = `/internal?name=${
+      utils.getQuery("name") || ""
+    }&index=${0}`;
+  }
+
+  onHomeClick() {
+    window.location.href = `/`;
   }
 
   render() {
@@ -167,7 +179,7 @@ class OutM extends React.PureComponent<
       style360,
       panoramicStyle,
       photoItems,
-      isShow
+      isShow,
     } = this.state;
     console.log("DATA", data.data[currType], currType);
 
@@ -180,7 +192,7 @@ class OutM extends React.PureComponent<
               height: 100vh;
             }
             .internal-page {
-              background-image: url("/static/bg-mobile.jpg");
+              background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-mobile.jpg");
               background-size: 100% 100%;
               width: 100%;
               height: 100%;
@@ -238,33 +250,39 @@ class OutM extends React.PureComponent<
           <div id="display-3d" style={{ ...style360 }}></div>
 
           <div className="bottom-bar">
-            <div className="panoramic" style={{ ...panoramicStyle }} onClick={this.onPhotoClick}>
-              <img className="panoramic-icon" src="/static/photo.png"></img>
+            <div
+              className="panoramic"
+              style={{ ...panoramicStyle }}
+              onClick={this.onPhotoClick}
+            >
+              <img
+                className="panoramic-icon"
+                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
+              ></img>
               预览图
             </div>
-            <Link
-              href={{
-                pathname: "/internal",
-                query: {
-                  name: (router && router.query && router.query.name) || "",
-                  index: 0,
-                },
-              }}
+            <div
+              onClick={this.onInternalClick}
+              className="panoramic"
+              style={{ ...panoramicStyle }}
             >
-              <div className="panoramic" style={{ ...panoramicStyle }}>
-                <img
-                  className="panoramic-icon"
-                  src="/static/panoramic.png"
-                ></img>
-                内饰
-              </div>
-            </Link>
-            <Link href="/">
-              <div className="panoramic" style={{ ...panoramicStyle }}>
-                <img className="panoramic-icon" src="/static/home.png"></img>
-                主页
-              </div>
-            </Link>
+              <img
+                className="panoramic-icon"
+                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"
+              ></img>
+              内饰
+            </div>
+            <div
+              onClick={this.onHomeClick}
+              className="panoramic"
+              style={{ ...panoramicStyle }}
+            >
+              <img
+                className="panoramic-icon"
+                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/home.png"
+              ></img>
+              主页
+            </div>
           </div>
 
           {(
@@ -273,25 +291,17 @@ class OutM extends React.PureComponent<
                 .hotPoint) ||
             []
           ).map((item, index) => (
-            <Link
-              key={index}
-              href={{
-                pathname: "/internal",
-                query: {
-                  name: (router && router.query && router.query.name) || "",
-                  index,
-                },
-              }}
-            >
-              <div
-                className="hot-point"
-                style={{ left: item.x, top: item.y }}
-              />
-            </Link>
+            <div
+              className="hot-point"
+              onClick={this.onInternalClick}
+              style={{ left: item.x, top: item.y }}
+            />
           ))}
         </section>
 
-        {isShow && <PhotoSwipeWap items={photoItems} index={currImgIndex - 1} />}
+        {isShow && (
+          <PhotoSwipeWap items={photoItems} index={currImgIndex - 1} />
+        )}
       </section>
     );
   }

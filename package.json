@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "npm install && next build",
+    "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js",
     "export": "npm run build && next export",
-    "build-test": "cross-env DEPLOY_ENV=test npm run build",
-    "start-test": "cross-env DEPLOY_ENV=test npm run start",
-    "build-prod": "cross-env DEPLOY_ENV=prod npm run build",
-    "start-prod": "cross-env DEPLOY_ENV=prod npm run start"
+    "build-test": "npm install && cross-env DEPLOY_ENV=test npm run build",
+    "start-test": "npm install && cross-env DEPLOY_ENV=test npm run start",
+    "build-prod": "npm install && cross-env DEPLOY_ENV=prod npm run build",
+    "start-prod": "npm install && cross-env DEPLOY_ENV=prod npm run start"
   },
   "dependencies": {
     "@baiducloud/sdk": "^1.0.0-rc.14",

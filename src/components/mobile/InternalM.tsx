@@ -8,6 +8,7 @@ import { toJS } from "mobx";
 import Link from "next/link";
 import { withRouter } from "next/dist/client/router";
 import { WithRouterProps } from "next/dist/client/with-router";
+import utils from "../../utils";
 
 interface InternalProps {
   appStore?: AppStore;
@@ -68,6 +69,10 @@ class InternalM extends React.PureComponent<
     }
   }
 
+  onOutClick() {
+    window.location.href = `/out?name=${utils.getQuery("name") || ""}`;
+  }
+
   render() {
     const { router } = this.props;
     const { panoramicStyle } = this.state;
@@ -77,17 +82,14 @@ class InternalM extends React.PureComponent<
         <div id="viewer-360"></div>
 
         <div className="bottom-bar">
-          <Link
-            href={{
-              pathname: "/out",
-              query: { name: router && router.query && router.query.name },
-            }}
+          <div
+            onClick={this.onOutClick}
+            className="panoramic"
+            style={{ ...panoramicStyle }}
           >
-            <div className="panoramic" style={{ ...panoramicStyle }}>
-              <img className="panoramic-icon" src="/static/panoramic.png"></img>
-              全景
-            </div>
-          </Link>
+            <img className="panoramic-icon" src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"></img>
+            全景
+          </div>
         </div>
 
         <style jsx>

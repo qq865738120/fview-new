@@ -21,6 +21,10 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
 
   async componentDidMount() {}
 
+  onOutClick(name) {
+    window.location.href = `/out?name=${name}`;
+  }
+
   render() {
     const { list } = this.state;
 
@@ -29,9 +33,11 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <div className="list">
           {list.map((item, index) => (
             <div className="item" key={index}>
-              <Link href={{ pathname: "/out", query: { name: item.name } }}>
-                <img className="item-img" src={item.image} />
-              </Link>
+              <img
+                onClick={this.onOutClick.bind(this, item.name)}
+                className="item-img"
+                src={item.image}
+              />
             </div>
           ))}
         </div>
@@ -39,7 +45,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <style jsx>
           {`
             .index-page {
-              background-image: url("/static/bg-index.png");
+              background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-index.png");
               background-size: 100%;
               // height: 50rem;
             }

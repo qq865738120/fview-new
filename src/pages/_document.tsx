@@ -13,7 +13,6 @@ class MyDocument extends Document {
         <body>
           <script src="/js/jquery.min.js"></script>
           <script type="text/javascript" src="/js/3deye.js"></script>   
-          
           <Main />
           <NextScript />
         </body>

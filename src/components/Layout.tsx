@@ -26,13 +26,15 @@ export default class Layout extends React.PureComponent<
       this.resize();
     });
 
-    document.body.addEventListener(
-      "touchmove",
-      (e) => {
-        e.preventDefault(); //阻止默认事件(上下滑动)
-      },
-      { passive: false }
-    );
+    setTimeout(() => {
+      document.body.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault(); //阻止默认事件(上下滑动)
+        },
+        { passive: false }
+      );
+    }, 200);
   }
 
   resize() {
@@ -41,25 +43,26 @@ export default class Layout extends React.PureComponent<
       document.getElementsByTagName("html")[0].style.fontSize = "";
       appStore.setIsMobile(false);
     } else {
-      var width = window.innerWidth,
-        height = window.innerHeight,
-        style = "";
-      
+      setTimeout(() => {
+        var width = window.innerWidth,
+          height = window.innerHeight,
+          style = "";
+        // 设计稿宽度, 750|640|520
+        var designWith = 750;
 
-      // 设计稿宽度, 750|640|520
-      var designWith = 750;
+        // 设计稿上1px对应设备上多少个单位的vw, 100vw表示设备屏幕宽度
+        var vw = 100 / designWith;
 
-      // 设计稿上1px对应设备上多少个单位的vw, 100vw表示设备屏幕宽度
-      var vw = 100 / designWith;
+        // html的font-size的大小
+        // 同时也是单位rem的大小
+        // 为了方便后面的尺寸计算,放大100倍,即设计稿上的100px;
+        var fontSize = 100 * vw;
 
-      // html的font-size的大小
-      // 同时也是单位rem的大小
-      // 为了方便后面的尺寸计算,放大100倍,即设计稿上的100px;
-      var fontSize = 100 * vw;
-
-      // 设置html的font-size, 可以直接写在 css 里面
-      document.getElementsByTagName("html")[0].style.fontSize = fontSize + (width >= height ? "vh" : "vw");
-      appStore.setIsMobile(true);
+        // 设置html的font-size, 可以直接写在 css 里面
+        document.getElementsByTagName("html")[0].style.fontSize =
+          fontSize + (width >= height ? "vh" : "vw");
+        appStore.setIsMobile(true);
+      }, 150);
     }
   }
 
