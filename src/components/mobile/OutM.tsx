@@ -38,6 +38,7 @@ class OutM extends React.PureComponent<
       panoramicStyle: {},
       photoItems: [],
       isShow: false,
+      warpStyle: {},
     };
   }
 
@@ -47,7 +48,13 @@ class OutM extends React.PureComponent<
     //   return;
     // }
 
-    this.setState({ currType: this.props.router.query.name });
+    this.setState({
+      currType: this.props.router.query.name,
+      warpStyle: {
+        width: typeof window != "undefined" ? window.innerWidth : "100vw",
+        height: typeof window != "undefined" ? window.innerHeight : "100vh",
+      },
+    });
     const { angle, angleType } = this.state;
 
     const currType = this.props.router.query.name as string;
@@ -91,8 +98,8 @@ class OutM extends React.PureComponent<
         },
         totalImages: 36,
         imageExtension: "png",
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         angle,
         angleType, // 角度类型，对应angle中的数组索引
         handlerMove: (index, ang?) => {
@@ -180,11 +187,12 @@ class OutM extends React.PureComponent<
       panoramicStyle,
       photoItems,
       isShow,
+      warpStyle,
     } = this.state;
-    console.log("DATA", data.data[currType], currType);
+    console.log("DATA", data.data[currType], currType);  
 
     return (
-      <section className="internal-warp">
+      <section className="internal-warp" style={{ ...warpStyle }}>
         <style jsx>
           {`
             .internal-warp {
@@ -236,16 +244,38 @@ class OutM extends React.PureComponent<
             }
 
             .hot-point {
-              width: 0.18rem;
-              height: 0.18rem;
-              background-color: #0779e4;
+              width: 0.2rem;
+              height: 0.2rem;
+              background-color: #846e31;
+              opacity: 0.4;
               border-radius: 100%;
-              opacity: 0.6;
               position: absolute;
-              box-shadow: 0.01rem 0.01rem 0.12rem #043058;
+              box-shadow: 0 0 0.12rem #9c998b;
+              animation: hot-bg 2s linear infinite;
+            }
+
+            @keyframes hot-bg {
+              0% {
+                box-shadow: 0 0 0.08rem #9c998b;
+                background-color: #9c998b;
+                opacity: 0.4;
+              }
+
+              50% {
+                box-shadow: 0 0 0.12rem #FFDF43;
+                background-color: #FFDF43;
+                opacity: 0.8;
+              }
+
+              100% {
+                box-shadow: 0 0 0.08rem #9c998b;
+                background-color: #9c998b;
+                opacity: 0.4;
+              }
             }
           `}
         </style>
+
         <section className="internal-page mobile">
           <div id="display-3d" style={{ ...style360 }}></div>
 
@@ -294,7 +324,10 @@ class OutM extends React.PureComponent<
             <div
               className="hot-point"
               onClick={this.onInternalClick}
-              style={{ left: item.x, top: item.y }}
+              style={{
+                left: utils.isServer ? item.x : utils.px2Rem(window.innerWidth / 2) + item.x + "rem" ,
+                top: utils.isServer ? item.y : utils.px2Rem(window.innerHeight / 2)  + item.y + "rem",
+              }}
             />
           ))}
         </section>

@@ -12,9 +12,19 @@ const getQuery = (variable) => {
   return false;
 };
 
+const px2Rem = (px: number) => {
+  if (!isServer) {
+    return px / window.innerWidth / 13.333333333333333 * 100
+  } else {
+    return px
+  }
+
+};
+
 const utils = {
   isServer,
-  getQuery
+  getQuery,
+  px2Rem
 };
 
 export default utils;
