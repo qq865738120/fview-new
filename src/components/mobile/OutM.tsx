@@ -20,6 +20,8 @@ interface OutMState {
   photoItems: PhotoSwipeItems[];
 }
 
+let timerId = null;
+
 @inject("appStore")
 @inject("carStore")
 @observer
@@ -47,6 +49,16 @@ class OutM extends React.PureComponent<
     //   Router.replace("/")
     //   return;
     // }
+
+    timerId = setInterval(() => {
+        document.body.addEventListener(
+          "touchmove",
+          (e) => {
+            e.preventDefault(); //阻止默认事件(上下滑动)
+          },
+          { passive: false }
+        );
+    }, 100);
 
     this.setState({
       currType: this.props.router.query.name,
@@ -82,7 +94,7 @@ class OutM extends React.PureComponent<
           //   data.data[currType][ang || "fv"][index - 1].url.split("/");
           // const auto = ((arr && arr[5]) || "").split("?")[1];
           // console.log("auto", auto);
-          
+
           // return (
           //   arr[0] +
           //   "//" +
@@ -97,7 +109,7 @@ class OutM extends React.PureComponent<
           //   "?" +
           //   auto
           // );
-          return data.data[currType][ang || "fv"][index - 1].url
+          return data.data[currType][ang || "fv"][index - 1].url;
         },
         totalImages: 36,
         imageExtension: "png",
@@ -117,6 +129,11 @@ class OutM extends React.PureComponent<
         this.resize();
       });
     }, 0);
+  }
+
+  componentWillUnmount() {
+    clearInterval(timerId);
+    timerId = null;
   }
 
   resize() {
@@ -167,10 +184,10 @@ class OutM extends React.PureComponent<
     this.setState({ photoItems: [...photoItems], isShow: true });
   };
 
-  onInternalClick() {
+  onInternalClick(index) {
     window.location.href = `/internal?name=${
       utils.getQuery("name") || ""
-    }&index=${0}`;
+    }&index=${index}`;
   }
 
   onHomeClick() {
@@ -192,7 +209,7 @@ class OutM extends React.PureComponent<
       isShow,
       warpStyle,
     } = this.state;
-    console.log("DATA", data.data[currType], currType);  
+    console.log("DATA", data.data[currType], currType);
 
     return (
       <section className="internal-warp" style={{ ...warpStyle }}>
@@ -265,8 +282,8 @@ class OutM extends React.PureComponent<
               }
 
               50% {
-                box-shadow: 0 0 0.12rem #FFDF43;
-                background-color: #FFDF43;
+                box-shadow: 0 0 0.12rem #ffdf43;
+                background-color: #ffdf43;
                 opacity: 0.8;
               }
 
@@ -295,7 +312,7 @@ class OutM extends React.PureComponent<
               预览图
             </div>
             <div
-              onClick={this.onInternalClick}
+              onClick={this.onInternalClick.bind(this, 0)}
               className="panoramic"
               style={{ ...panoramicStyle }}
             >
@@ -303,7 +320,18 @@ class OutM extends React.PureComponent<
                 className="panoramic-icon"
                 src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"
               ></img>
-              内饰
+              驾驶室
+            </div>
+            <div
+              onClick={this.onInternalClick.bind(this, 1)}
+              className="panoramic"
+              style={{ ...panoramicStyle }}
+            >
+              <img
+                className="panoramic-icon"
+                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"
+              ></img>
+              操控室
             </div>
             <div
               onClick={this.onHomeClick}
@@ -325,11 +353,16 @@ class OutM extends React.PureComponent<
             []
           ).map((item, index) => (
             <div
+              key={index}
               className="hot-point"
-              onClick={this.onInternalClick}
+              onClick={this.onInternalClick.bind(this, index)}
               style={{
-                left: utils.isServer ? item.x : utils.px2Rem(window.innerWidth / 2) + item.x + "rem" ,
-                top: utils.isServer ? item.y : utils.px2Rem(window.innerHeight / 2)  + item.y + "rem",
+                left: utils.isServer
+                  ? item.x
+                  : utils.px2Rem(window.innerWidth / 2) + item.x + "rem",
+                top: utils.isServer
+                  ? item.y
+                  : utils.px2Rem(window.innerHeight / 2) + item.y + "rem",
               }}
             />
           ))}
