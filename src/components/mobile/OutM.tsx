@@ -51,13 +51,20 @@ class OutM extends React.PureComponent<
     // }
 
     timerId = setInterval(() => {
-        document.body.addEventListener(
-          "touchmove",
-          (e) => {
-            e.preventDefault(); //阻止默认事件(上下滑动)
-          },
-          { passive: false }
-        );
+      document.body.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault(); //阻止默认事件(上下滑动)
+        },
+        { passive: false }
+      );
+      document.getElementById("display-3d").addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault(); //阻止默认事件(上下滑动)
+        },
+        { passive: false }
+      );
     }, 100);
 
     this.setState({
@@ -148,6 +155,7 @@ class OutM extends React.PureComponent<
             transform: `rotate(-90deg) translate(${-height}px, 0px)`,
             width: height + "px",
             height: width + "px",
+            overflow: "hidden"
           },
           panoramicStyle: {
             transform: `rotate(0)`,
@@ -156,7 +164,11 @@ class OutM extends React.PureComponent<
       } else {
         //竖屏
         this.setState({
-          style360: {},
+          style360: {
+            width: width + "px",
+            height: height + "px",
+            overflow: "hidden"
+          },
           panoramicStyle: {},
         });
       }

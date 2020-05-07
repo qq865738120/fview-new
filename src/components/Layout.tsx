@@ -62,7 +62,7 @@ export default class Layout extends React.PureComponent<
         document.getElementsByTagName("html")[0].style.fontSize =
           fontSize + (width >= height ? "vh" : "vw");
         appStore.setIsMobile(true);
-      }, 150);
+      }, 250);
     }
   }
 
