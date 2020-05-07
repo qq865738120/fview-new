@@ -58,13 +58,15 @@ class InternalM extends React.PureComponent<
       //横屏
       this.setState({
         panoramicStyle: {
-          transform: `rotate(0)`,
+          transform: `rotate(0deg)`,
         },
       });
     } else {
       //竖屏
       this.setState({
-        panoramicStyle: {},
+        panoramicStyle: {
+          transform: `rotate(0deg)`,
+        },
       });
     }
   }
@@ -122,7 +124,6 @@ class InternalM extends React.PureComponent<
               justify-content: center;
               flex-direction: column;
               font-size: 0.2rem;
-              transform: rotate(90deg);
             }
 
             .panoramic-icon {

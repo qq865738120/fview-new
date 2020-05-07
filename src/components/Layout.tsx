@@ -34,7 +34,7 @@ export default class Layout extends React.PureComponent<
         },
         { passive: false }
       );
-    }, 200);
+    }, 400);
   }
 
   resize() {

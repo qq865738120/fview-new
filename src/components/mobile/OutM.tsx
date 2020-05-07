@@ -200,7 +200,7 @@ class OutM extends React.PureComponent<
               height: 100vh;
             }
             .internal-page {
-              background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-mobile.jpg");
+              // background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-mobile.jpg");
               background-size: 100% 100%;
               width: 100%;
               height: 100%;

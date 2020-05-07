@@ -61,8 +61,8 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
             }
 
             .list > .item > .item-img {
-              width: 5rem;
-              height: 5rem;
+              width: 100%;
+              height: 10rem;
               object-fit: cover;
             }
           `}

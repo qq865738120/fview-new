@@ -20,7 +20,7 @@ const intervalTask = () => {
   Object.keys(outData).map(outKey => {
     Object.keys(outData[outKey]).map(itemKey => {
       outData[outKey][itemKey].map((item, index) => {
-        const url = showImage(outKey + "-" + itemKey + "/" + item.url);
+        const url = showImage(outKey + "-" + itemKey + "/" + item.url).split("?")[0];
         result[outKey][itemKey][index].url = url;
       })
     })
