@@ -77,24 +77,27 @@ class OutM extends React.PureComponent<
     ($("#display-3d") as any).vc3dEye &&
       ($("#display-3d") as any).vc3dEye({
         imagePath: (index, ang?) => {
-          const arr =
-            data.data[currType] &&
-            data.data[currType][ang || "fv"][index - 1].url.split("/");
-          const auto = ((arr && arr[5]) || "").split("?")[1];
-          return (
-            arr[0] +
-            "//" +
-            arr[2] +
-            "/" +
-            arr[3] +
-            "/" +
-            arr[4] +
-            "/" +
-            index +
-            ".png" +
-            "?" +
-            auto
-          );
+          // const arr =
+          //   data.data[currType] &&
+          //   data.data[currType][ang || "fv"][index - 1].url.split("/");
+          // const auto = ((arr && arr[5]) || "").split("?")[1];
+          // console.log("auto", auto);
+          
+          // return (
+          //   arr[0] +
+          //   "//" +
+          //   arr[2] +
+          //   "/" +
+          //   arr[3] +
+          //   "/" +
+          //   arr[4] +
+          //   "/" +
+          //   index +
+          //   ".png" +
+          //   "?" +
+          //   auto
+          // );
+          return data.data[currType][ang || "fv"][index - 1].url
         },
         totalImages: 36,
         imageExtension: "png",

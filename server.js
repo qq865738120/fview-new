@@ -20,7 +20,10 @@ const intervalTask = () => {
   Object.keys(outData).map(outKey => {
     Object.keys(outData[outKey]).map(itemKey => {
       outData[outKey][itemKey].map((item, index) => {
-        const url = showImage(outKey + "-" + itemKey + "/" + item.url).split("?")[0];
+        // const url = showImage(outKey + "-" + itemKey + "/" + item.url).split("?")[0];
+        const url = "https://fview-zl-0416.cdn.bcebos.com/" +  outKey + "-" + itemKey + "/" + item.url
+        // console.log("url", url);
+        
         result[outKey][itemKey][index].url = url;
       })
     })
