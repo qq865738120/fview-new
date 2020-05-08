@@ -11,8 +11,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta property="og:type" content="website" />
-          {/* <meta property="og:title" content="页面标题" />
-          <meta property="og:description" content="页面描述" /> */}
+          <meta property="og:description" content="页面描述" />
           <meta
             property="og:image"
             content="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/share-thumb.jpg"

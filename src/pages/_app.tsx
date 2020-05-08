@@ -50,6 +50,9 @@ class MyMobxApp extends App {
   componentDidMount() {
     const isServer = typeof window === "undefined";
     if (!isServer) {
+      // const wx = require("weixin-js-sdk");
+      // console.log("WX", wx);
+
       const isWeixin = navigator.userAgent.indexOf("MicroMessenger") !== -1;
       if (!isWeixin) {
         window.location.href = "/page/wxError.html";
