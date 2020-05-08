@@ -26,15 +26,15 @@ export default class Layout extends React.PureComponent<
       this.resize();
     });
 
-    setTimeout(() => {
-      document.body.addEventListener(
-        "touchmove",
-        (e) => {
-          e.preventDefault(); //阻止默认事件(上下滑动)
-        },
-        { passive: false }
-      );
-    }, 400);
+    // setTimeout(() => {
+    //   document.body.addEventListener(
+    //     "touchmove",
+    //     (e) => {
+    //       e.preventDefault(); //阻止默认事件(上下滑动)
+    //     },
+    //     { passive: false }
+    //   );
+    // }, 400);
   }
 
   resize() {

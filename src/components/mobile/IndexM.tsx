@@ -3,6 +3,7 @@ import { observer, inject } from "mobx-react";
 import AppStore from "../../stores/app";
 import MokeData from "../../moke";
 import Link from "next/link";
+import utils from "../../utils";
 const axios = require("axios");
 
 interface IndexMProps {
@@ -16,21 +17,29 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
     super(props);
     this.state = {
       list: new MokeData().getAutoList(),
+      listStyle: {}
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    this.setState({
+      listStyle: {
+        height: typeof window === "undefined" ? "" :  utils.px2Rem(window.innerHeight) - 2 + "rem"
+      }
+    })
+  }
 
   onOutClick(name) {
     window.location.href = `/out?name=${name}`;
   }
 
   render() {
-    const { list } = this.state;
+    const { list, listStyle } = this.state;
 
     return (
       <section className="index-page">
-        <div className="list">
+        <div className="top-bar" />
+        <div className="list" style={{ ...listStyle }}>
           {list.map((item, index) => (
             <div className="item" key={index}>
               <img
@@ -46,15 +55,20 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
           {`
             .index-page {
               background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-index.png");
-              background-size: 100%;
-              // height: 50rem;
+              background-size: cover;
+            }
+
+            .top-bar {
+              height: 2rem;
             }
 
             .list {
+              height: 100vh;
+              overflow: scroll;
             }
 
             .list > .item {
-              height: 11rem;
+              height: 13rem;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -62,7 +76,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
 
             .list > .item > .item-img {
               width: 100%;
-              height: 10rem;
+              height: 9rem;
               object-fit: cover;
             }
           `}

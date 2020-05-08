@@ -17,7 +17,7 @@ export default class Index extends PureComponent<IndexProps, any> {
 
   componentDidMount() {
     const { appStore } = this.props
-    appStore.setTitle("列表")
+    appStore.setTitle("中联重科起重机VR全景看车")
   }
 
   render() {

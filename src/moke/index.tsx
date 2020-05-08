@@ -25,7 +25,11 @@ export default class MokeData {
       // },
       {
         name: "ZTC251V",
-        image: "/static/car-1.png"
+        image: "https://fview-zl-0416.cdn.bcebos.com/home/ZTC251V.png"
+      },
+      {
+        name: "ZTC201E",
+        image: "https://fview-zl-0416.cdn.bcebos.com/home/ZTC201E.png"
       },
       // {
       //   name: "ZTC350H",

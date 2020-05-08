@@ -4,6 +4,8 @@ import { inject, observer } from "mobx-react";
 import AppStore from "../stores/app";
 import InternalM from "../components/mobile/InternalM";
 import OutM from "../components/mobile/OutM";
+import { withRouter } from "next/router";
+import { WithRouterProps } from "next/dist/client/with-router";
 
 interface OutProps {
   appStore: AppStore
@@ -11,14 +13,14 @@ interface OutProps {
 
 @inject("appStore")
 @observer
-export default class Out extends PureComponent<OutProps, any> {
+class Out extends PureComponent<OutProps & WithRouterProps, any> {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     const { appStore } = this.props
-    appStore.setTitle("内饰")
+    appStore.setTitle(`中联起重机${this.props.router.query.name}全景展示`)
   }
 
   render() {
@@ -29,3 +31,5 @@ export default class Out extends PureComponent<OutProps, any> {
     </Layout>
   }
 }
+
+export default withRouter(Out)

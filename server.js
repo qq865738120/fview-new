@@ -48,7 +48,15 @@ app.prepare().then(() => {
       res.write(JSON.stringify({ data: cacheOutData }))
       res.end();
     } else {
-      handle(req, res, parsedUrl)
+      // const isWeixin = req.headers['user-agent'].indexOf("MicroMessenger") !== -1;
+      // if (isWeixin) {
+        handle(req, res, parsedUrl)
+      // } else if (pathname === "/page/wxError.html") {
+      //   res.end();
+      // } else {
+      //   res.writeHead(301, {'Location': '/page/wxError.html'});
+      //   res.end();
+      // }
     }
   }).listen(config[DEPLOY_ENV].port, err => {
     if (err) throw err
