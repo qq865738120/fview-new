@@ -51,7 +51,7 @@ class MyMobxApp extends App {
     const isServer = typeof window === "undefined";
     if (!isServer) {
       const isWeixin = navigator.userAgent.indexOf("MicroMessenger") !== -1;
-      if (isWeixin) {
+      if (!isWeixin) {
         window.location.href = "/page/wxError.html";
       }
     }
