@@ -8,6 +8,7 @@ import "photo-sphere-viewer/dist/photo-sphere-viewer.min.css";
 import "photoswipe/dist/photoswipe.css";
 import "photoswipe/dist/default-skin/default-skin.css";
 const axios = require("axios");
+// const wx = require('weixin-js-sdk');
 
 const isMobile = (req) => {
   const deviceAgent = req && req.headers["user-agent"];
@@ -50,7 +51,6 @@ class MyMobxApp extends App {
   componentDidMount() {
     const isServer = typeof window === "undefined";
     if (!isServer) {
-      // const wx = require("weixin-js-sdk");
       // console.log("WX", wx);
 
       const isWeixin = navigator.userAgent.indexOf("MicroMessenger") !== -1;

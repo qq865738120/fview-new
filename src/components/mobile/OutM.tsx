@@ -45,27 +45,24 @@ class OutM extends React.PureComponent<
   }
 
   componentDidMount() {
-    // if (!this.props.router.query.name) {
-    //   Router.replace("/")
-    //   return;
-    // }
 
-    timerId = setInterval(() => {
       document.body.addEventListener(
         "touchmove",
         (e) => {
           e.preventDefault(); //阻止默认事件(上下滑动)
         },
-        { passive: false }
+        { passive: false, capture: true }
       );
       document.getElementById("display-3d").addEventListener(
         "touchmove",
         (e) => {
+          console.log("ok");
+          
           e.preventDefault(); //阻止默认事件(上下滑动)
         },
-        { passive: false }
+        { passive: false, capture: true }
       );
-    }, 100);
+
 
     this.setState({
       currType: this.props.router.query.name,
@@ -138,11 +135,6 @@ class OutM extends React.PureComponent<
     }, 0);
   }
 
-  componentWillUnmount() {
-    clearInterval(timerId);
-    timerId = null;
-  }
-
   resize() {
     setTimeout(() => {
       const width = window.innerWidth;
@@ -155,7 +147,7 @@ class OutM extends React.PureComponent<
             transform: `rotate(-90deg) translate(${-height}px, 0px)`,
             width: height + "px",
             height: width + "px",
-            overflow: "hidden"
+            overflow: "hidden",
           },
           panoramicStyle: {
             transform: `rotate(0)`,
@@ -167,7 +159,7 @@ class OutM extends React.PureComponent<
           style360: {
             width: width + "px",
             height: height + "px",
-            overflow: "hidden"
+            overflow: "hidden",
           },
           panoramicStyle: {},
         });
@@ -230,6 +222,9 @@ class OutM extends React.PureComponent<
             .internal-warp {
               width: 100vw;
               height: 100vh;
+              position: fixed;
+              top: 0;
+              z-index: 1000;
             }
             .internal-page {
               // background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-mobile.jpg");

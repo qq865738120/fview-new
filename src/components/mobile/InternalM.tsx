@@ -33,22 +33,20 @@ class InternalM extends React.PureComponent<
 
   componentDidMount() {
 
-    timerId = setInterval(() => {
       document.body.addEventListener(
         "touchmove",
         (e) => {
           e.preventDefault(); //阻止默认事件(上下滑动)
         },
-        { passive: false }
+        { passive: false, capture: true  }
       );
       document.getElementById("viewer-360").addEventListener(
         "touchmove",
         (e) => {
           e.preventDefault(); //阻止默认事件(上下滑动)
         },
-        { passive: false }
+        { passive: false, capture: true  }
       );
-    }, 100);
 
     const current = this.props.router.query.name as string;
     const index = this.props.router.query.index as string;
@@ -69,11 +67,6 @@ class InternalM extends React.PureComponent<
         this.resize();
       });
     }, 0);
-  }
-
-  componentWillUnmount() {
-    clearInterval(timerId);
-    timerId = null;
   }
 
   resize() {
