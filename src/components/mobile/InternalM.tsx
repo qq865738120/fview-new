@@ -59,6 +59,9 @@ class InternalM extends React.PureComponent<
       panorama: data.data[current]["int"][index].url,
       container: document.getElementById("viewer-360"), // 放全景图的元素
       navbar: false,
+      gyroscope: true,
+      fisheye: true,
+      zoomRangeWidth: 600
     });
 
     setTimeout(() => {
@@ -116,8 +119,12 @@ class InternalM extends React.PureComponent<
           {`
             .internal-page {
               width: 100vw;
-              height: 100vh;
+              height: 200vh;
               overflow: hidden;
+              position: fixed;
+              top: 0;
+              z-index: 1000;
+              background-color: white;
             }
 
             #viewer-360 {

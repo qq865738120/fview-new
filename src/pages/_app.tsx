@@ -54,9 +54,9 @@ class MyMobxApp extends App {
       // console.log("WX", wx);
 
       const isWeixin = navigator.userAgent.indexOf("MicroMessenger") !== -1;
-      if (!isWeixin) {
-        window.location.href = "/page/wxError.html";
-      }
+      // if (!isWeixin) {
+      //   window.location.href = "/page/wxError.html";
+      // }
     }
   }
 

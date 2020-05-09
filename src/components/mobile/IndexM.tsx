@@ -38,8 +38,11 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
 
     return (
       <section className="index-page">
-        <div className="top-bar" />
-        <div className="list" style={{ ...listStyle }}>
+        <div className="top-bar">
+          <img src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-zoomlion.png" className="logo"></img>
+          <img src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-words.png" className="desc"></img>
+        </div>
+        <div className="list">
           {list.map((item, index) => (
             <div className="item" key={index}>
               <img
@@ -54,16 +57,33 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         <style jsx>
           {`
             .index-page {
-              background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-index.png");
+              background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view%2Fimg%2Fbg-index.png");
               background-size: cover;
             }
 
             .top-bar {
-              height: 2rem;
+              height: 1.5rem;
+              width: 100vw;
+              position: fixed;
+              top: 0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+
+            .logo {
+              width: 2rem;
+              margin-left: 0.5rem;
+            }
+
+            .desc {
+              width: 2rem;
+              margin-right: 0.5rem;
             }
 
             .list {
               height: 100vh;
+              width: 100vw;
               overflow: scroll;
             }
 

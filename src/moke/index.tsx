@@ -47,10 +47,10 @@ export default class MokeData {
       //   name: "ZTC550R",
       //   image: "/static/car-1.png"
       // },
-      // {
-      //   name: "ZTC700H",
-      //   image: "/static/car-1.png"
-      // },
+      {
+        name: "ZTC700H",
+        image: "https://fview-zl-0416.cdn.bcebos.com/home/ZTC700H.png"
+      },
       // {
       //   name: "ZTC800E",
       //   image: "/static/car-1.png"

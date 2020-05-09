@@ -67,6 +67,7 @@
 
       selector.bind("touchmove", function (target) {
         console.log("touchmove : isMoving=" + isMoving);
+        console.log("target", target);
         target.preventDefault();
         var actualTouch =
           target.originalEvent.touches[0] ||

@@ -41,35 +41,27 @@ class OutM extends React.PureComponent<
       photoItems: [],
       isShow: false,
       warpStyle: {},
+      isPortrait: true,
     };
   }
 
   componentDidMount() {
-
-      document.body.addEventListener(
-        "touchmove",
-        (e) => {
-          e.preventDefault(); //阻止默认事件(上下滑动)
-        },
-        { passive: false, capture: true }
-      );
-      document.getElementById("display-3d").addEventListener(
-        "touchmove",
-        (e) => {
-          console.log("ok");
-          
-          e.preventDefault(); //阻止默认事件(上下滑动)
-        },
-        { passive: false, capture: true }
-      );
-
+    document.body.addEventListener(
+      "touchmove",
+      (e) => {
+        console.log("e", e);
+        // e.stopPropagation();
+        e.preventDefault(); //阻止默认事件(上下滑动)
+      },
+      { passive: false, capture: true }
+    );
 
     this.setState({
       currType: this.props.router.query.name,
-      warpStyle: {
-        width: typeof window != "undefined" ? window.innerWidth : "100vw",
-        height: typeof window != "undefined" ? window.innerHeight : "100vh",
-      },
+      // warpStyle: {
+      //   width: typeof window != "undefined" ? window.innerWidth : "100vw",
+      //   height: typeof window != "undefined" ? window.innerHeight : "100vh",
+      // },
     });
     const { angle, angleType } = this.state;
 
@@ -152,6 +144,7 @@ class OutM extends React.PureComponent<
           panoramicStyle: {
             transform: `rotate(0)`,
           },
+          isPortrait: false,
         });
       } else {
         //竖屏
@@ -162,6 +155,7 @@ class OutM extends React.PureComponent<
             overflow: "hidden",
           },
           panoramicStyle: {},
+          isPortrait: true,
         });
       }
     }, 150);
@@ -212,9 +206,9 @@ class OutM extends React.PureComponent<
       photoItems,
       isShow,
       warpStyle,
+      isPortrait,
     } = this.state;
     console.log("DATA", data.data[currType], currType);
-
     return (
       <section className="internal-warp" style={{ ...warpStyle }}>
         <style jsx>
@@ -222,9 +216,7 @@ class OutM extends React.PureComponent<
             .internal-warp {
               width: 100vw;
               height: 100vh;
-              position: fixed;
-              top: 0;
-              z-index: 1000;
+              background-color: white;
             }
             .internal-page {
               // background-image: url("https://fview-static.cdn.bcebos.com/zoomlion-360view/img/bg-mobile.jpg");
@@ -307,17 +299,19 @@ class OutM extends React.PureComponent<
           <div id="display-3d" style={{ ...style360 }}></div>
 
           <div className="bottom-bar">
-            <div
-              className="panoramic"
-              style={{ ...panoramicStyle }}
-              onClick={this.onPhotoClick}
-            >
-              <img
-                className="panoramic-icon"
-                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
-              ></img>
-              预览图
-            </div>
+            {isPortrait && (
+              <div
+                className="panoramic"
+                style={{ ...panoramicStyle }}
+                onClick={this.onPhotoClick}
+              >
+                <img
+                  className="panoramic-icon"
+                  src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
+                ></img>
+                预览图
+              </div>
+            )}
             <div
               onClick={this.onInternalClick.bind(this, 0)}
               className="panoramic"
@@ -353,7 +347,7 @@ class OutM extends React.PureComponent<
             </div>
           </div>
 
-          {(
+          {/* {(
             (data.data[currType] &&
               data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]
                 .hotPoint) ||
@@ -372,7 +366,7 @@ class OutM extends React.PureComponent<
                   : utils.px2Rem(window.innerHeight / 2) + item.y + "rem",
               }}
             />
-          ))}
+          ))} */}
         </section>
 
         {isShow && (
