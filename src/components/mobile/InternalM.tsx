@@ -1,11 +1,9 @@
 import * as React from "react";
 import { observer, inject } from "mobx-react";
 import AppStore from "../../stores/app";
-import PhotoSphereViewer from "photo-sphere-viewer/dist/photo-sphere-viewer";
-
+import PhotoSphereViewer from "../../js/photo-sphere-viewer";
 import CarStore from "../../stores/car";
 import { toJS } from "mobx";
-import Link from "next/link";
 import { withRouter } from "next/dist/client/router";
 import { WithRouterProps } from "next/dist/client/with-router";
 import utils from "../../utils";
@@ -32,21 +30,13 @@ class InternalM extends React.PureComponent<
   }
 
   componentDidMount() {
-
-      document.body.addEventListener(
-        "touchmove",
-        (e) => {
-          e.preventDefault(); //阻止默认事件(上下滑动)
-        },
-        { passive: false, capture: true  }
-      );
-      document.getElementById("viewer-360").addEventListener(
-        "touchmove",
-        (e) => {
-          e.preventDefault(); //阻止默认事件(上下滑动)
-        },
-        { passive: false, capture: true  }
-      );
+    document.body.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault(); //阻止默认事件(上下滑动)
+      },
+      { passive: false, capture: true }
+    );
 
     const current = this.props.router.query.name as string;
     const index = this.props.router.query.index as string;
@@ -61,7 +51,7 @@ class InternalM extends React.PureComponent<
       navbar: false,
       gyroscope: true,
       fisheye: true,
-      zoomRangeWidth: 600
+      zoomRangeWidth: 600,
     });
 
     setTimeout(() => {
@@ -110,7 +100,10 @@ class InternalM extends React.PureComponent<
             className="panoramic"
             style={{ ...panoramicStyle }}
           >
-            <img className="panoramic-icon" src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"></img>
+            <img
+              className="panoramic-icon"
+              src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/panoramic.png"
+            ></img>
             全景
           </div>
         </div>
@@ -119,7 +112,7 @@ class InternalM extends React.PureComponent<
           {`
             .internal-page {
               width: 100vw;
-              height: 200vh;
+              height: 100vh;
               overflow: hidden;
               position: fixed;
               top: 0;

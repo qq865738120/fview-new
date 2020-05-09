@@ -69,6 +69,7 @@
         console.log("touchmove : isMoving=" + isMoving);
         console.log("target", target);
         target.preventDefault();
+        target.stopPropagation();
         var actualTouch =
           target.originalEvent.touches[0] ||
           target.originalEvent.changedTouches[0];

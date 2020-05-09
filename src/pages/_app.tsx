@@ -4,7 +4,7 @@ import { initializeStore, Store } from "../stores";
 import { Provider, inject, observer } from "mobx-react";
 import getConfig from "next/config";
 import "../styles/app.css";
-import "photo-sphere-viewer/dist/photo-sphere-viewer.min.css";
+import "../styles/photo-sphere-viewer.min.css";
 import "photoswipe/dist/photoswipe.css";
 import "photoswipe/dist/default-skin/default-skin.css";
 const axios = require("axios");

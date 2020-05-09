@@ -46,15 +46,15 @@ class OutM extends React.PureComponent<
   }
 
   componentDidMount() {
-    document.body.addEventListener(
-      "touchmove",
-      (e) => {
-        console.log("e", e);
-        // e.stopPropagation();
-        e.preventDefault(); //阻止默认事件(上下滑动)
-      },
-      { passive: false, capture: true }
-    );
+    // document.body.addEventListener(
+    //   "touchmove",
+    //   (e) => {
+    //     console.log("e", e);
+    //     // e.stopPropagation();
+    //     e.preventDefault(); //阻止默认事件(上下滑动)
+    //   },
+    //   { passive: false, capture: true }
+    // );
 
     this.setState({
       currType: this.props.router.query.name,
