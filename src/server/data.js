@@ -461,7 +461,7 @@ const outData = {
       },
     ],
     vv: [...imageUrls],
-    int: [{ url: "ZTC201E1.jpg" }, { url: "ZTC201E2.jpg" }],
+    int: [{ url: "ZTC700H1.jpg" }, { url: "ZTC700H2.jpg" }],
   },
 };
 
