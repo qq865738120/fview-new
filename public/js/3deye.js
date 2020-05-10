@@ -38,7 +38,8 @@
       selector.mousemove(function (target) {
         //console.log("mousemove : isMoving="+isMoving);
         console.log("target", target, this.offsetLeft, this.offsetTop);
-
+        target.preventDefault();
+        target.stopPropagation();
         if (isMoving == true)
           loadAppropriateImage(
             target.pageX - this.offsetLeft,

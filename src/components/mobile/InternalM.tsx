@@ -30,20 +30,15 @@ class InternalM extends React.PureComponent<
   }
 
   componentDidMount() {
-    document.body.addEventListener(
-      "touchmove",
-      (e) => {
-        e.preventDefault(); //阻止默认事件(上下滑动)
-      },
-      { passive: false, capture: true }
-    );
-
+    
     const current = this.props.router.query.name as string;
     const index = this.props.router.query.index as string;
 
     const { outData } = this.props.carStore;
     const data = toJS(outData);
     console.log("data", data.data[current]["int"][index].url);
+
+    document.body.addEventListener("touchmove", this.moveEvent);
 
     const psv = new PhotoSphereViewer({
       panorama: data.data[current]["int"][index].url,
@@ -60,6 +55,17 @@ class InternalM extends React.PureComponent<
         this.resize();
       });
     }, 0);
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener("touchmove", this.moveEvent)
+  }
+
+  moveEvent(e) {
+    console.log("e", e);
+    e.preventDefault(); //阻止默认事件(上下滑动)
+    e.stopPropagation();
+    e.stopImmediatePropagation();
   }
 
   resize() {
