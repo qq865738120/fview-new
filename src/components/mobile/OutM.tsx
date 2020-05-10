@@ -160,7 +160,9 @@ class OutM extends React.PureComponent<
             height: height + "px",
             overflow: "hidden",
           },
-          panoramicStyle: {},
+          panoramicStyle: {
+            transform: `rotate(0)`,
+          },
           isPortrait: true,
         });
       }
@@ -258,7 +260,6 @@ class OutM extends React.PureComponent<
               justify-content: center;
               flex-direction: column;
               font-size: 0.2rem;
-              transform: rotate(90deg);
               margin: 0 0.3rem;
             }
 
