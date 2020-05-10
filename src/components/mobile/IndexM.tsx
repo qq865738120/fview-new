@@ -44,7 +44,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         //横屏
         this.setState({
           indexStyle: {
-            maxWidth: "375px"
+            // maxWidth: "375px"
           }
         });
       } else {
