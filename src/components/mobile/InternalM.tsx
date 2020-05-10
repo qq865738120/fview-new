@@ -30,7 +30,6 @@ class InternalM extends React.PureComponent<
   }
 
   componentDidMount() {
-    
     const current = this.props.router.query.name as string;
     const index = this.props.router.query.index as string;
 
@@ -38,7 +37,11 @@ class InternalM extends React.PureComponent<
     const data = toJS(outData);
     console.log("data", data.data[current]["int"][index].url);
 
+    document.addEventListener("touchmove", this.moveEvent);
     document.body.addEventListener("touchmove", this.moveEvent);
+    document
+      .getElementById("bottom-bar")
+      .addEventListener("touchmove", this.moveEvent);
 
     const psv = new PhotoSphereViewer({
       panorama: data.data[current]["int"][index].url,
@@ -58,7 +61,11 @@ class InternalM extends React.PureComponent<
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("touchmove", this.moveEvent)
+    document
+      .getElementById("bottom-bar")
+      .removeEventListener("touchmove", this.moveEvent);
+    document.body.removeEventListener("touchmove", this.moveEvent);
+    document.removeEventListener("touchmove", this.moveEvent);
   }
 
   moveEvent(e) {
@@ -100,7 +107,7 @@ class InternalM extends React.PureComponent<
       <section className="internal-page">
         <div id="viewer-360"></div>
 
-        <div className="bottom-bar">
+        <div id="bottom-bar" className="bottom-bar">
           <div
             onClick={this.onOutClick}
             className="panoramic"

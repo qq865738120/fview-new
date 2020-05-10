@@ -40,20 +40,19 @@ class OutM extends React.PureComponent<
       panoramicStyle: {},
       photoItems: [],
       isShow: false,
-      warpStyle: {},
       isPortrait: true,
     };
   }
 
   componentDidMount() {
+    document.addEventListener("touchmove", this.moveEvent);
     document.body.addEventListener("touchmove", this.moveEvent);
+    document
+      .getElementById("bottom-bar")
+      .addEventListener("touchmove", this.moveEvent);
 
     this.setState({
       currType: this.props.router.query.name,
-      // warpStyle: {
-      //   width: typeof window != "undefined" ? window.innerWidth : "100vw",
-      //   height: typeof window != "undefined" ? window.innerHeight : "100vh",
-      // },
     });
     const { angle, angleType } = this.state;
 
@@ -120,7 +119,11 @@ class OutM extends React.PureComponent<
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("touchmove", this.moveEvent)
+    document
+      .getElementById("bottom-bar")
+      .removeEventListener("touchmove", this.moveEvent);
+    document.body.removeEventListener("touchmove", this.moveEvent);
+    document.removeEventListener("touchmove", this.moveEvent);
   }
 
   moveEvent(e) {
@@ -301,7 +304,7 @@ class OutM extends React.PureComponent<
         <section className="internal-page mobile">
           <div id="display-3d" style={{ ...style360 }}></div>
 
-          <div className="bottom-bar">
+          <div id="bottom-bar" className="bottom-bar">
             {isPortrait && (
               <div
                 className="panoramic"

@@ -44,7 +44,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         </div>
         <div className="list">
           {list.map((item, index) => (
-            <div className="item" key={index}>
+            <div className="item" key={index} style={{ justifyContent: index % 2 === 0 ? "flex-start" : "flex-end" }}>
               <img
                 onClick={this.onOutClick.bind(this, item.name)}
                 className="item-img"
@@ -88,15 +88,13 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
             }
 
             .list > .item {
-              height: 13rem;
+              height: 11rem;
               display: flex;
               align-items: center;
-              justify-content: center;
             }
 
             .list > .item > .item-img {
-              width: 100%;
-              height: 9rem;
+              height: 8rem;
               object-fit: cover;
             }
           `}
