@@ -24,7 +24,8 @@ export default class Index extends PureComponent<IndexProps, any> {
     const { appStore } = this.props
 
     return <Layout>
-      { appStore.isMobile ? <IndexM></IndexM> : <IndexM></IndexM> }
+      {/* { appStore.isMobile ? <IndexM></IndexM> : <IndexM></IndexM> } */}
+      <IndexM />
     </Layout>
   }
 }

@@ -27,7 +27,8 @@ class Out extends PureComponent<OutProps & WithRouterProps, any> {
     const { appStore } = this.props
 
     return <Layout>
-      { appStore.isMobile ? <OutM></OutM> : <OutM></OutM> }
+      {/* { appStore.isMobile ? <OutM></OutM> : <OutM></OutM> } */}
+      <OutM />
     </Layout>
   }
 }

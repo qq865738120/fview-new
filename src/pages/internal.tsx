@@ -19,7 +19,11 @@ class Internal extends PureComponent<InternalProps & WithRouterProps, any> {
 
   componentDidMount() {
     const { appStore } = this.props;
-    appStore.setTitle(`中联起重机${this.props.router.query.name}${this.props.router.query.index === "0" ? "驾驶室" : "操控室"}`);
+    appStore.setTitle(
+      `中联起重机${this.props.router.query.name}${
+        this.props.router.query.index === "0" ? "驾驶室" : "操控室"
+      }`
+    );
   }
 
   render() {
@@ -27,7 +31,9 @@ class Internal extends PureComponent<InternalProps & WithRouterProps, any> {
 
     return (
       <Layout>
-        {appStore.isMobile ? <InternalM></InternalM> : <InternalM></InternalM>}
+        {/* {appStore.isMobile ? <InternalM></InternalM> : <InternalM></InternalM>}
+         */}
+        <InternalM />
       </Layout>
     );
   }

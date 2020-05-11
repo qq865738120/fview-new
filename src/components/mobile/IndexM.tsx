@@ -12,7 +12,7 @@ interface IndexMProps {
 
 @inject("appStore")
 @observer
-export default class IndexM extends React.PureComponent<IndexMProps, any> {
+export default class IndexM extends React.Component<IndexMProps, any> {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,13 +23,13 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
   }
 
   async componentDidMount() {
-    if (!utils.isServer) {
-      setTimeout(() => {
-        document.body.addEventListener("touchmove", this.moveEvent, {
-          passive: false,
-        });
-      }, 10);
-    }
+    // if (!utils.isServer) {
+    //   setTimeout(() => {
+    //     document.body.addEventListener("touchmove", this.moveEvent, {
+    //       passive: false,
+    //     });
+    //   }, 10);
+    // }
 
     setTimeout(() => {
       this.resize();

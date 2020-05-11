@@ -25,7 +25,7 @@ let timerId = null;
 @inject("appStore")
 @inject("carStore")
 @observer
-class OutM extends React.PureComponent<
+class OutM extends React.Component<
   OutMProps & WithRouterProps,
   any & OutMState
 > {

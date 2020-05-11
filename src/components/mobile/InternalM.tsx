@@ -18,7 +18,7 @@ let timerId = null;
 @inject("appStore")
 @inject("carStore")
 @observer
-class InternalM extends React.PureComponent<
+class InternalM extends React.Component<
   InternalProps & WithRouterProps,
   any
 > {
