@@ -39,7 +39,6 @@
         //console.log("mousemove : isMoving="+isMoving);
         console.log("target", target, this.offsetLeft, this.offsetTop);
         target.preventDefault();
-        target.stopPropagation();
         if (isMoving == true)
           loadAppropriateImage(
             target.pageX - this.offsetLeft,
@@ -70,7 +69,6 @@
         console.log("touchmove : isMoving=" + isMoving);
         console.log("target", target);
         target.preventDefault();
-        target.stopPropagation();
         var actualTouch =
           target.originalEvent.touches[0] ||
           target.originalEvent.changedTouches[0];

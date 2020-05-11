@@ -38,13 +38,15 @@ class InternalM extends React.PureComponent<
     console.log("data", data.data[current]["int"][index].url);
 
     if (!utils.isServer) {
-      document.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document
-        .getElementById("bottom-bar")
-        .addEventListener("touchmove", this.moveEvent, { passive: false });
+      setTimeout(() => {
+        document.body.addEventListener("touchmove", this.moveEvent, {
+          passive: false,
+        });
+        document
+          .getElementById("bottom-bar")
+          .addEventListener("touchmove", this.moveEvent, { passive: false });
+      }, 10);
     }
-    
 
     const psv = new PhotoSphereViewer({
       panorama: data.data[current]["int"][index].url,

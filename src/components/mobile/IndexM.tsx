@@ -18,15 +18,17 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
     this.state = {
       list: new MokeData().getAutoList(),
       listStyle: {},
-      indexStyle: {}
+      indexStyle: {},
     };
   }
 
   async componentDidMount() {
-
     if (!utils.isServer) {
-      document.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
+      setTimeout(() => {
+        document.body.addEventListener("touchmove", this.moveEvent, {
+          passive: false,
+        });
+      }, 10);
     }
 
     setTimeout(() => {
@@ -38,6 +40,7 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
   }
 
   moveEvent(e) {
+    alert("滚动")
     console.log("e", e);
     e.preventDefault(); //阻止默认事件(上下滑动)
     e.stopPropagation();
@@ -57,14 +60,12 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
         this.setState({
           indexStyle: {
             // maxWidth: "375px"
-          }
+          },
         });
       } else {
         //竖屏
         this.setState({
-          indexStyle: {
-            
-          }
+          indexStyle: {},
         });
       }
     }, 150);
@@ -76,13 +77,25 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
     return (
       <section className="index-page" style={{ ...indexStyle }}>
         <div className="top-bar" style={{ ...indexStyle }}>
-          <img src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-zoomlion.png" className="logo"></img>
-          <img src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-words.png" className="desc"></img>
+          <img
+            src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-zoomlion.png"
+            className="logo"
+          ></img>
+          <img
+            src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/logo-words.png"
+            className="desc"
+          ></img>
         </div>
         <div className="list">
           <div style={{ height: "2rem" }}></div>
           {list.map((item, index) => (
-            <div className="item" key={index} style={{ justifyContent: index % 2 === 0 ? "flex-start" : "flex-end" }}>
+            <div
+              className="item"
+              key={index}
+              style={{
+                justifyContent: index % 2 === 0 ? "flex-start" : "flex-end",
+              }}
+            >
               <img
                 onClick={this.onOutClick.bind(this, item.name)}
                 className="item-img"

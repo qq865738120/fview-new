@@ -46,11 +46,14 @@ class OutM extends React.PureComponent<
 
   componentDidMount() {
     if (!utils.isServer) {
-      document.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document
-        .getElementById("bottom-bar")
-        .addEventListener("touchmove", this.moveEvent, { passive: false });
+      console.log("OK");
+      
+      setTimeout(() => {
+        document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
+        document
+          .getElementById("bottom-bar")
+          .addEventListener("touchmove", this.moveEvent, { passive: false });
+      }, 10)
     }
     
     this.setState({
@@ -129,7 +132,7 @@ class OutM extends React.PureComponent<
   }
 
   moveEvent(e) {
-    console.log("e", e);
+    console.log("eeeeee", e);
     e.preventDefault(); //阻止默认事件(上下滑动)
     e.stopPropagation();
     e.stopImmediatePropagation();
