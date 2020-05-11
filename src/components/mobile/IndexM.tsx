@@ -27,9 +27,6 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
     if (!utils.isServer) {
       document.addEventListener("touchmove", this.moveEvent, { passive: false });
       document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
-      document
-        .getElementById("bottom-bar")
-        .addEventListener("touchmove", this.moveEvent, { passive: false });
     }
 
     setTimeout(() => {
