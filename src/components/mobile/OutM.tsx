@@ -124,11 +124,7 @@ class OutM extends React.PureComponent<
   }
 
   componentWillUnmount() {
-    document
-      .getElementById("bottom-bar")
-      .removeEventListener("touchmove", this.moveEvent);
-    document.body.removeEventListener("touchmove", this.moveEvent);
-    document.removeEventListener("touchmove", this.moveEvent);
+    // document.body.removeEventListener("touchmove", this.moveEvent);
   }
 
   moveEvent(e) {
