@@ -24,12 +24,27 @@ export default class IndexM extends React.PureComponent<IndexMProps, any> {
 
   async componentDidMount() {
 
+    if (!utils.isServer) {
+      document.addEventListener("touchmove", this.moveEvent, { passive: false });
+      document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
+      document
+        .getElementById("bottom-bar")
+        .addEventListener("touchmove", this.moveEvent, { passive: false });
+    }
+
     setTimeout(() => {
       this.resize();
       window.addEventListener("resize", () => {
         this.resize();
       });
     }, 0);
+  }
+
+  moveEvent(e) {
+    console.log("e", e);
+    e.preventDefault(); //阻止默认事件(上下滑动)
+    e.stopPropagation();
+    e.stopImmediatePropagation();
   }
 
   onOutClick(name) {
