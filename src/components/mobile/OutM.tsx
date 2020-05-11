@@ -45,16 +45,14 @@ class OutM extends React.Component<
   }
 
   componentDidMount() {
-    if (!utils.isServer) {
-      console.log("OK");
-      
-      setTimeout(() => {
-        document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
-        document
-          .getElementById("bottom-bar")
-          .addEventListener("touchmove", this.moveEvent, { passive: false });
-      }, 10)
-    }
+    // if (!utils.isServer) {
+    //   setTimeout(() => {
+    //     document.body.addEventListener("touchmove", this.moveEvent, { passive: false });
+    //     document
+    //       .getElementById("bottom-bar")
+    //       .addEventListener("touchmove", this.moveEvent, { passive: false });
+    //   }, 10)
+    // }
     
     this.setState({
       currType: this.props.router.query.name,

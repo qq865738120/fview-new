@@ -37,16 +37,16 @@ class InternalM extends React.Component<
     const data = toJS(outData);
     console.log("data", data.data[current]["int"][index].url);
 
-    if (!utils.isServer) {
-      setTimeout(() => {
-        document.body.addEventListener("touchmove", this.moveEvent, {
-          passive: false,
-        });
-        document
-          .getElementById("bottom-bar")
-          .addEventListener("touchmove", this.moveEvent, { passive: false });
-      }, 10);
-    }
+    // if (!utils.isServer) {
+    //   setTimeout(() => {
+    //     document.body.addEventListener("touchmove", this.moveEvent, {
+    //       passive: false,
+    //     });
+    //     document
+    //       .getElementById("bottom-bar")
+    //       .addEventListener("touchmove", this.moveEvent, { passive: false });
+    //   }, 10);
+    // }
 
     const psv = new PhotoSphereViewer({
       panorama: data.data[current]["int"][index].url,
