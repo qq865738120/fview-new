@@ -30,7 +30,6 @@ class Internal extends React.Component<any, any> {
       container: document.getElementById("viewer-360"), // 放全景图的元素
       navbar: false,
       fisheye: true,
-      zoomRangeWidth: 600,
     });
 
     setTimeout(() => {
