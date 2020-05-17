@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="页面描述" />
+    <meta
+      property="og:image"
+      content="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/share-thumb.jpg"
+    />
+    <title>中联重科起重机VR全景看车</title>
+    <link
+      href="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/js/photoswipe.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/js/photo-sphere-viewer.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <script>
+      const isPc = function () {
+        let Agents = new Array(
+          "Android",
+          "iPhone",
+          "SymbianOS",
+          "Windows Phone",
+          "iPad",
+          "iPod"
+        );
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+          if (navigator.userAgent.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+          }
+        }
+        return flag;
+      };
+
+      const resize = function () {
+        if (isPc()) {
+          document.getElementsByTagName("html")[0].style.fontSize = "";
+        } else {
+          setTimeout(() => {
+            var width = window.innerWidth,
+              height = window.innerHeight;
+            // 设计稿宽度, 750|640|520
+            var designWith = 750;
+
+            // 设计稿上1px对应设备上多少个单位的vw, 100vw表示设备屏幕宽度
+            var vw = 100 / designWith;
+
+            // html的font-size的大小
+            // 同时也是单位rem的大小
+            // 为了方便后面的尺寸计算,放大100倍,即设计稿上的100px;
+            var fontSize = 100 * vw;
+
+            // 设置html的font-size, 可以直接写在 css 里面
+            document.getElementsByTagName("html")[0].style.fontSize =
+              fontSize + (width >= height ? "vh" : "vw");
+          }, 250);
+        }
+      };
+
+      resize();
+      window.addEventListener("resize", function () {
+        resize();
+      });
+    </script>
+    <div id="root"></div>
+  </body>
+</html>

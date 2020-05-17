@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "exec_mode": "cluster",
+      "instances": 2,
+      "script": "./dist/server/server.js",
+      "name": "fview",
+      "error_file": "~/webapp/logs/fview-server.err.log",
+      "out_file": "~/webapp/logs/fview-server.out.log",
+      "merge_logs": true,
+      "log_date_format" : "YYYY/MM/DD HH:mm Z"
+    }
+  ]
+}
