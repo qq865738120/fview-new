@@ -1,5 +1,6 @@
 import * as React from "react";
 import MokeData from "../public/moke";
+import Loading from "./components/Loading";
 
 export default class Index extends React.Component<any, any> {
   constructor(props: any) {
@@ -8,28 +9,21 @@ export default class Index extends React.Component<any, any> {
       list: new MokeData().getAutoList(),
       listStyle: {},
       indexStyle: {},
+      isLoading: true,
     };
   }
 
   componentDidMount() {
-    // document.body.addEventListener("touchmove", this.moveEvent, {
-    //   passive: false,
-    // });
-
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 500 + Math.random() * 1000);
     setTimeout(() => {
       this.resize();
       window.addEventListener("resize", () => {
         this.resize();
       });
     }, 0);
-  }
-
-  moveEvent(e: any) {
-    alert("滚动");
-    console.log("e", e);
-    e.preventDefault(); //阻止默认事件(上下滑动)
-    e.stopPropagation();
-    e.stopImmediatePropagation();
   }
 
   onOutClick(name: string) {
@@ -57,7 +51,7 @@ export default class Index extends React.Component<any, any> {
   }
 
   render() {
-    const { list, indexStyle } = this.state;
+    const { list, indexStyle, isLoading } = this.state;
 
     return (
       <section className="index-page" style={{ ...indexStyle }}>
@@ -89,7 +83,7 @@ export default class Index extends React.Component<any, any> {
             </div>
           ))}
         </div>
-
+        {isLoading && <Loading />}
         <style jsx>
           {`
             .index-page {

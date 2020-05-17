@@ -4,6 +4,7 @@ import MokeData from "../public/moke";
 import PhotoSwipeWap, { PhotoSwipeItems } from "./components/PhotoSwipe";
 import eye from "../public/js/3deye";
 import "../public/styles/photoswipe.css";
+import Loading from "./components/Loading";
 
 interface OutMState {
   photoItems: PhotoSwipeItems[];
@@ -22,10 +23,16 @@ class Out extends React.Component<any, OutMState & any> {
       photoItems: [],
       isShow: false,
       isPortrait: true,
+      isLoading: true,
     };
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 1000 + Math.random() * 2000);
+
     document.body.addEventListener("touchmove", this.moveEvent, {
       passive: false,
     });
@@ -38,6 +45,8 @@ class Out extends React.Component<any, OutMState & any> {
     });
     const { angle, angleType } = this.state;
     const currType = utils.getQuery("name") as string;
+
+    document.title = `中联起重机${currType}全景展示`;
 
     const outData = new MokeData().getOutList();
     console.log("data", outData[currType], currType);
@@ -98,13 +107,13 @@ class Out extends React.Component<any, OutMState & any> {
   }
 
   componentWillUnmount() {
+    const barDom = document.getElementById("bottom-bar");
+    barDom && barDom.removeEventListener("touchmove", this.moveEvent);
     document.body.removeEventListener("touchmove", this.moveEvent);
   }
 
   moveEvent(e: any) {
     e.preventDefault(); //阻止默认事件(上下滑动)
-    e.stopPropagation();
-    e.stopImmediatePropagation();
   }
 
   resize() {
@@ -183,6 +192,7 @@ class Out extends React.Component<any, OutMState & any> {
       isShow,
       warpStyle,
       isPortrait,
+      isLoading,
     } = this.state;
 
     const outData = new MokeData().getOutList();
@@ -323,7 +333,7 @@ class Out extends React.Component<any, OutMState & any> {
               主页
             </div>
           </div>
-
+          {isLoading && <Loading />}
           {/* {(
             (data.data[currType] &&
               data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]

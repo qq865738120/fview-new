@@ -15,6 +15,10 @@ class Internal extends React.Component<any, any> {
     const current = utils.getQuery("name") as string;
     const index = utils.getQuery("index") as string;
 
+    document.title = `中联起重机${current}${
+      index === "0" ? "驾驶室" : "操控室"
+    }`;
+
     const outData = new MokeData().getOutList();
     console.log("data", outData[current]["int"][index].url);
 
@@ -48,8 +52,6 @@ class Internal extends React.Component<any, any> {
 
   moveEvent(e: any) {
     e.preventDefault(); //阻止默认事件(上下滑动)
-    e.stopPropagation();
-    e.stopImmediatePropagation();
   }
 
   resize() {
