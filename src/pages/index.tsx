@@ -1,6 +1,5 @@
 import * as React from "react";
 import MokeData from "../public/moke";
-import router from "react-router";
 
 export default class Index extends React.Component<any, any> {
   constructor(props: any) {

@@ -37,7 +37,6 @@ class Out extends React.Component<any, OutMState & any> {
       currType: utils.getQuery("name"),
     });
     const { angle, angleType } = this.state;
-
     const currType = utils.getQuery("name") as string;
 
     const outData = new MokeData().getOutList();

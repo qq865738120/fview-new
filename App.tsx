@@ -4,13 +4,13 @@ import loadable from "@loadable/component";
 import "./src/public/index.css";
 
 const IndexComponent = loadable(() =>
-  import(/* webpackChunkName: "home" */ "./src/pages/Index")
+  import(/* webpackChunkName: "home" */ "./src/pages/index")
 );
 const OutComponent = loadable(() =>
-  import(/* webpackChunkName: "about" */ "./src/pages/Out")
+  import(/* webpackChunkName: "about" */ "./src/pages/out")
 );
 const InternalComponent = loadable(() =>
-  import(/* webpackChunkName: "about" */ "./src/pages/Internal")
+  import(/* webpackChunkName: "about" */ "./src/pages/internal")
 );
 
 class App extends React.Component<any, any> {
