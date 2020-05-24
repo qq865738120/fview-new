@@ -3,7 +3,6 @@ import utils from "../public/js/utils";
 import MokeData from "../public/moke";
 import PhotoSwipeWap, { PhotoSwipeItems } from "./components/PhotoSwipe";
 import eye from "../public/js/3deye";
-import "../public/styles/photoswipe.css";
 import Loading from "./components/Loading";
 
 interface OutMState {
@@ -24,6 +23,7 @@ class Out extends React.Component<any, OutMState & any> {
       isShow: false,
       isPortrait: true,
       isLoading: true,
+      rotate: 0,
     };
   }
 
@@ -93,8 +93,8 @@ class Out extends React.Component<any, OutMState & any> {
       angle,
       angleType, // 角度类型，对应angle中的数组索引
       handlerMove: (index: any, ang?: any) => {
-        console.log("11111", index, angleType);
-        this.setState({ currImgIndex: index, angleType });
+        console.log("11111", index, ang);
+        this.setState({ currImgIndex: index, angleType: ang });
       },
     });
 
@@ -169,7 +169,7 @@ class Out extends React.Component<any, OutMState & any> {
       }
     );
     // this.setState({ photoItems: [] });
-    this.setState({ photoItems: [...photoItems], isShow: true });
+    this.setState({ photoItems: [...photoItems], rotate: -90, isShow: true });
   };
 
   onHotPointClick = (index: any) => {
@@ -179,11 +179,13 @@ class Out extends React.Component<any, OutMState & any> {
       "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index
     );
 
+    document.getElementsByClassName("");
+
     const photoItems = [
       {
         src: "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index,
-        w: 1080,
-        h: 1920,
+        w: 1415,
+        h: 945,
       },
     ];
     console.log("photoItems", photoItems);
@@ -192,6 +194,7 @@ class Out extends React.Component<any, OutMState & any> {
       photoItems: [...photoItems],
       isShow: true,
       currImgIndex: 1,
+      rotate: 0,
     });
   };
 
@@ -218,11 +221,12 @@ class Out extends React.Component<any, OutMState & any> {
       isLoading,
       angle,
       angleType,
+      rotate,
     } = this.state;
 
     const outData = new MokeData().getOutList();
 
-    console.log("DATA", outData[currType], currType);
+    console.log("DATA", outData[currType], currType, angle[angleType]);
     return (
       <section className="internal-warp" style={{ ...warpStyle }}>
         <style jsx>
@@ -277,30 +281,36 @@ class Out extends React.Component<any, OutMState & any> {
             .hot-point {
               width: 0.2rem;
               height: 0.2rem;
-              background-color: #846e31;
+              background-color: #d4b04e;
               opacity: 0.4;
               border-radius: 100%;
               position: absolute;
-              box-shadow: 0 0 0.12rem #9c998b;
-              animation: hot-bg 2s linear infinite;
+              box-shadow: 0 0 0.12rem #c7c1a4;
+              animation: hot-bg 1.2s linear infinite;
             }
 
             @keyframes hot-bg {
               0% {
-                box-shadow: 0 0 0.08rem #9c998b;
-                background-color: #9c998b;
+                box-shadow: 0 0 0.08rem #c7c1a4;
+                background-color: #c7c1a4;
                 opacity: 0.4;
               }
 
-              50% {
+              30% {
                 box-shadow: 0 0 0.12rem #ffdf43;
                 background-color: #ffdf43;
-                opacity: 0.8;
+                opacity: 0.9;
+              }
+
+              70% {
+                box-shadow: 0 0 0.12rem #ffdf43;
+                background-color: #ffdf43;
+                opacity: 0.9;
               }
 
               100% {
-                box-shadow: 0 0 0.08rem #9c998b;
-                background-color: #9c998b;
+                box-shadow: 0 0 0.08rem #c7c1a4;
+                background-color: #c7c1a4;
                 opacity: 0.4;
               }
             }
@@ -383,7 +393,11 @@ class Out extends React.Component<any, OutMState & any> {
         </section>
 
         {isShow && (
-          <PhotoSwipeWap items={photoItems} index={currImgIndex - 1} />
+          <PhotoSwipeWap
+            items={photoItems}
+            index={currImgIndex - 1}
+            rotate={rotate}
+          />
         )}
       </section>
     );

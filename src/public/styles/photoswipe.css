@@ -4,9 +4,9 @@
 */
 /* pswp = photoswipe */
 
-.pswp__img {
+/* .pswp__img {
   transform: rotate(-90deg);
-}
+} */
 
 .pswp {
   display: none;

@@ -337,7 +337,260 @@ export default class MokeData {
             ],
           },
         ],
-        vv: [...imageUrls],
+        vv: [
+          {
+            url: "1.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.5, y: 1.5 },
+            ],
+          },
+          {
+            url: "2.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.4, y: 1.6 },
+            ],
+          },
+          {
+            url: "3.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.25, y: 1.5 },
+            ],
+          },
+          {
+            url: "4.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.15, y: 1.5 },
+            ],
+          },
+          {
+            url: "5.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 1.48 },
+            ],
+          },
+          {
+            url: "6.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.05, y: 1.4 },
+            ],
+          },
+          {
+            url: "7.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "8.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "9.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "10.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "11.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "12.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "13.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "14.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "15.png",
+            hotPoint: [
+              { x: -0.75, y: 0.3 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "16.png",
+            hotPoint: [
+              { x: -0.6, y: 0.5 },
+              { x: 0.2, y: -1.4 },
+            ],
+          },
+          {
+            url: "17.png",
+            hotPoint: [
+              { x: -0.5, y: 0.75 },
+              { x: 0.2, y: -1.5 },
+            ],
+          },
+          {
+            url: "18.png",
+            hotPoint: [
+              { x: -0.4, y: 1.05 },
+              { x: 0.15, y: -1.65 },
+            ],
+          },
+          {
+            url: "19.png",
+            hotPoint: [
+              { x: -0.35, y: 1.3 },
+              { x: 0.05, y: -1.75 },
+            ],
+          },
+          {
+            url: "20.png",
+            hotPoint: [
+              { x: -0.3, y: 1.45 },
+              { x: 0, y: -1.8 },
+            ],
+          },
+          {
+            url: "21.png",
+            hotPoint: [
+              { x: -0.2, y: 1.55 },
+              { x: -0.1, y: -1.8 },
+            ],
+          },
+          {
+            url: "22.png",
+            hotPoint: [
+              { x: 0.1, y: 1.7 },
+              { x: -0.35, y: -1.7 },
+            ],
+          },
+          {
+            url: "23.png",
+            hotPoint: [
+              { x: 0.2, y: 1.65 },
+              { x: -0.45, y: -1.6 },
+            ],
+          },
+          {
+            url: "24.png",
+            hotPoint: [
+              { x: 0.3, y: 1.6 },
+              { x: -0.6, y: -1.55 },
+            ],
+          },
+          {
+            url: "25.png",
+            hotPoint: [
+              { x: 0.35, y: 1.55 },
+              { x: -0.75, y: -1.35 },
+            ],
+          },
+          {
+            url: "26.png",
+            hotPoint: [
+              { x: 0.55, y: 1.5 },
+              { x: -1, y: -1.05 },
+            ],
+          },
+          {
+            url: "27.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "28.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "29.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "30.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "31.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "32.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "33.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
+          },
+          {
+            url: "34.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.9, y: 1 },
+            ],
+          },
+          {
+            url: "35.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.8, y: 1.1 },
+            ],
+          },
+          {
+            url: "36.png",
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: -0.65, y: 1.2 },
+            ],
+          },
+        ],
         int: [{ url: "ZTC251V1.jpg" }, { url: "ZTC251V2.jpg" }],
       },
       ZTC201E: {

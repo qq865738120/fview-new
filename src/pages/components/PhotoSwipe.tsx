@@ -3,6 +3,7 @@ import * as React from "react";
 // import PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default";
 import PhotoSwipe from "photoswipe";
 import PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default";
+import { isNull } from "util";
 
 export interface PhotoSwipeItems {
   src: string;
@@ -13,6 +14,7 @@ export interface PhotoSwipeItems {
 interface PhotoSwipeProps {
   items: PhotoSwipeItems[];
   index?: number;
+  rotate?: number;
 }
 
 const options = {
@@ -66,6 +68,7 @@ export default class PhotoSwipeWap extends React.PureComponent<
 
   componentDidMount() {
     this.init(this.props);
+    this.cusorStyle(this.props);
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -76,7 +79,31 @@ export default class PhotoSwipeWap extends React.PureComponent<
     if (this.gallery) {
       console.log("this.gallery.items", this.gallery.items);
     }
+
+    this.cusorStyle(props);
   }
+
+  cusorStyle = (props: any) => {
+    const head = document.getElementsByTagName("head")[0];
+    const history = document.getElementById("photo-swipe");
+
+    if (!isNull(history)) {
+      head.removeChild(history);
+    }
+
+    const style = document.createElement("style");
+    style.type = "text/css";
+    style.rel = "stylesheet";
+    style.id = "photo-swipe";
+    //for Chrome Firefox Opera Safari
+    style.appendChild(
+      document.createTextNode(
+        `.pswp__img{transform: rotate(${props.rotate}deg);}`
+      )
+    );
+
+    head.appendChild(style);
+  };
 
   init = (props: any) => {
     if (this.gallery) {
