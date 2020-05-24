@@ -20,10 +20,10 @@ class App extends React.Component<any, any> {
 
   componentDidMount() {
     const isWeixin = navigator.userAgent.indexOf("MicroMessenger") !== -1;
-    if (!isWeixin) {
-      window.location.href =
-        "https://gz.bcebos.com/v1/fview-static/zoomlion-360view/css/wxError.html";
-    }
+    // if (!isWeixin) {
+    //   window.location.href =
+    //     "https://gz.bcebos.com/v1/fview-static/zoomlion-360view/css/wxError.html";
+    // }
   }
 
   render() {

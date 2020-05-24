@@ -163,13 +163,36 @@ class Out extends React.Component<any, OutMState & any> {
       (item: any) => {
         return {
           src: item.url || "",
-          w: "1080",
-          h: "1920",
+          w: 1080,
+          h: 1920,
         };
       }
     );
-    this.setState({ photoItems });
+    // this.setState({ photoItems: [] });
     this.setState({ photoItems: [...photoItems], isShow: true });
+  };
+
+  onHotPointClick = (index: any) => {
+    console.log("index", index);
+    console.log(
+      "url",
+      "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index
+    );
+
+    const photoItems = [
+      {
+        src: "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index,
+        w: 1080,
+        h: 1920,
+      },
+    ];
+    console.log("photoItems", photoItems);
+
+    this.setState({
+      photoItems: [...photoItems],
+      isShow: true,
+      currImgIndex: 1,
+    });
   };
 
   onInternalClick(index: any) {
@@ -193,6 +216,8 @@ class Out extends React.Component<any, OutMState & any> {
       warpStyle,
       isPortrait,
       isLoading,
+      angle,
+      angleType,
     } = this.state;
 
     const outData = new MokeData().getOutList();
@@ -334,16 +359,16 @@ class Out extends React.Component<any, OutMState & any> {
             </div>
           </div>
           {isLoading && <Loading />}
-          {/* {(
-            (data.data[currType] &&
-              data.data[currType][angle[angleType] || "fv"][currImgIndex - 1]
+          {(
+            (outData[currType] &&
+              outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
                 .hotPoint) ||
             []
-          ).map((item, index) => (
+          ).map((item: any, index: any) => (
             <div
               key={index}
               className="hot-point"
-              onClick={this.onInternalClick.bind(this, index)}
+              onClick={this.onHotPointClick.bind(this, index)}
               style={{
                 left: utils.isServer
                   ? item.x
@@ -351,9 +376,10 @@ class Out extends React.Component<any, OutMState & any> {
                 top: utils.isServer
                   ? item.y
                   : utils.px2Rem(window.innerHeight / 2) + item.y + "rem",
+                display: item.x === 0 && item.y === 0 ? "none" : "block",
               }}
             />
-          ))} */}
+          ))}
         </section>
 
         {isShow && (

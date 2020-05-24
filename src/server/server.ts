@@ -2,6 +2,9 @@
 import compression from "compression";
 import application, * as express from "express";
 import * as path from "path";
+import Axios from "axios";
+import config from "../config/index";
+import crypto from "crypto";
 
 const app = application();
 app.use(compression());
@@ -30,6 +33,49 @@ app.use(
     },
   })
 );
+
+/**
+ * 参数url必传，url为当前页面url
+ */
+app.route("/api/wx/signature").get(async (req, res) => {
+  const tokenRes = await Axios.get(
+    `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.secret}`
+  );
+
+  console.log("req.query", req.query);
+
+  if (tokenRes.data.access_token) {
+    //token请求成功
+    const ticketRes = await Axios.get(
+      `https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${tokenRes.data.access_token}&type=jsapi`
+    );
+    if (ticketRes.data.ticket) {
+      // ticket拿到
+      const noncestr = crypto
+        .randomBytes(Math.ceil(16 / 2))
+        .toString("hex")
+        .slice(0, 16);
+      const timestamp = new Date().getTime();
+      const str = `jsapi_ticket=${ticketRes.data.ticket}&noncestr=${noncestr}&timestamp=${timestamp}&url=${req.query.url}`;
+      const hash = crypto.createHash("sha1");
+      hash.update(str);
+      const signature = hash.digest("hex");
+      res.send({
+        errcode: 0,
+        noncestr,
+        timestamp,
+        signature,
+      });
+    } else {
+      res.send({
+        errcode: ticketRes.data.errcode,
+        errmsg: ticketRes.data.errmsg,
+      });
+    }
+  } else {
+    res.send({ errcode: tokenRes.data.errcode, errmsg: tokenRes.data.errmsg });
+  }
+});
 
 app.listen(3000, "0.0.0.0", (error) => {
   if (error) {

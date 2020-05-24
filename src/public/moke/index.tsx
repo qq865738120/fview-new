@@ -86,147 +86,255 @@ export default class MokeData {
         fv: [
           {
             url: "1.png",
-            hotPoint: [{ x: 0.25, y: 2.23 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.25, y: 2.23 },
+            ],
           },
           {
             url: "2.png",
-            hotPoint: [{ x: 0.2, y: 2.1 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.2, y: 2.1 },
+            ],
           },
           {
             url: "3.png",
-            hotPoint: [{ x: 0.15, y: 1.88 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.15, y: 1.88 },
+            ],
           },
           {
             url: "4.png",
-            hotPoint: [{ x: 0.15, y: 1.68 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.15, y: 1.68 },
+            ],
           },
           {
             url: "5.png",
-            hotPoint: [{ x: 0.14, y: 1.48 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.14, y: 1.48 },
+            ],
           },
           {
             url: "6.png",
-            hotPoint: [{ x: 0.13, y: 1.18 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.13, y: 1.18 },
+            ],
           },
           {
             url: "7.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "8.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "9.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0.45, y: 2 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "10.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "11.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "12.png",
-            hotPoint: [{ x: 100, y: 100 }],
+            hotPoint: [
+              { x: 0.5, y: 0.1 },
+              { x: 0, y: 0 },
+            ],
           },
           {
             url: "13.png",
-            hotPoint: [{ x: 0.1, y: -1.7 }],
+            hotPoint: [
+              { x: 0.5, y: 0.4 },
+              { x: 0.1, y: -1.7 },
+            ],
           },
           {
             url: "14.png",
-            hotPoint: [{ x: 0.1, y: -1.92 }],
+            hotPoint: [
+              { x: 0.5, y: 0.8 },
+              { x: 0.1, y: -1.92 },
+            ],
           },
           {
             url: "15.png",
-            hotPoint: [{ x: 0.1, y: -2.07 }],
+            hotPoint: [
+              { x: 0.45, y: 1.2 },
+              { x: 0.1, y: -2.07 },
+            ],
           },
           {
             url: "16.png",
-            hotPoint: [{ x: 0.15, y: -2.23 }],
+            hotPoint: [
+              { x: 0.45, y: 1.35 },
+              { x: 0.15, y: -2.23 },
+            ],
           },
           {
             url: "17.png",
-            hotPoint: [{ x: 0.2, y: -2.4 }],
+            hotPoint: [
+              { x: 0.45, y: 1.65 },
+              { x: 0.2, y: -2.4 },
+            ],
           },
           {
             url: "18.png",
-            hotPoint: [{ x: 0.2, y: -2.45 }],
+            hotPoint: [
+              { x: 0.45, y: 1.6 },
+              { x: 0.2, y: -2.45 },
+            ],
           },
           {
             url: "19.png",
-            hotPoint: [{ x: 0.2, y: -2.5 }],
+            hotPoint: [
+              { x: 0.45, y: 1.55 },
+              { x: 0.2, y: -2.5 },
+            ],
           },
           {
             url: "20.png",
-            hotPoint: [{ x: 0.2, y: -2.5 }],
+            hotPoint: [
+              { x: 0.45, y: 1.5 },
+              { x: 0.2, y: -2.5 },
+            ],
           },
           {
             url: "21.png",
-            hotPoint: [{ x: 0.2, y: -2.4 }],
+            hotPoint: [
+              { x: 0.45, y: 1.45 },
+              { x: 0.2, y: -2.4 },
+            ],
           },
           {
             url: "22.png",
-            hotPoint: [{ x: 0.3, y: -2.1 }],
+            hotPoint: [
+              { x: 0.45, y: 1.4 },
+              { x: 0.3, y: -2.1 },
+            ],
           },
           {
             url: "23.png",
-            hotPoint: [{ x: 0.35, y: -1.6 }],
+            hotPoint: [
+              { x: 0.45, y: 1.35 },
+              { x: 0.35, y: -1.6 },
+            ],
           },
           {
             url: "24.png",
-            hotPoint: [{ x: 0.35, y: -1.1 }],
+            hotPoint: [
+              { x: 0.45, y: 1.2 },
+              { x: 0.35, y: -1.1 },
+            ],
           },
           {
             url: "25.png",
-            hotPoint: [{ x: 0.4, y: -1.6 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.4, y: -1.6 },
+            ],
           },
           {
             url: "26.png",
-            hotPoint: [{ x: 0.45, y: -0.6 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: -0.6 },
+            ],
           },
           {
             url: "27.png",
-            hotPoint: [{ x: 0.45, y: 0 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: 0 },
+            ],
           },
           {
             url: "28.png",
-            hotPoint: [{ x: 0.45, y: 0.5 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: 0.5 },
+            ],
           },
           {
             url: "29.png",
-            hotPoint: [{ x: 0.45, y: 1 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: 1 },
+            ],
           },
           {
             url: "30.png",
-            hotPoint: [{ x: 0.45, y: 1.4 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: 1.4 },
+            ],
           },
           {
             url: "31.png",
-            hotPoint: [{ x: 0.45, y: 1.2 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.45, y: 1.2 },
+            ],
           },
           {
             url: "32.png",
-            hotPoint: [{ x: 0.4, y: 1.6 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.4, y: 1.6 },
+            ],
           },
           {
             url: "33.png",
-            hotPoint: [{ x: 0.4, y: 1.9 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.4, y: 1.9 },
+            ],
           },
           {
             url: "34.png",
-            hotPoint: [{ x: 0.33, y: 2.3 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.33, y: 2.3 },
+            ],
           },
           {
             url: "35.png",
-            hotPoint: [{ x: 0.3, y: 2.25 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.3, y: 2.25 },
+            ],
           },
           {
             url: "36.png",
-            hotPoint: [{ x: 0.22, y: 2.35 }],
+            hotPoint: [
+              { x: 0, y: 0 },
+              { x: 0.22, y: 2.35 },
+            ],
           },
         ],
         vv: [...imageUrls],

@@ -159,7 +159,7 @@ class vc3dEye {
             this.imagePath(this.currentImage, this.angle[this.angleType]) +
             ")"
         );
-      } else if (this.currentY - newY > 60) {
+      } else if (this.currentY - newY > 100) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
         this.currentY = newY;
@@ -170,7 +170,7 @@ class vc3dEye {
             this.imagePath(this.currentImage, this.angle[this.angleType]) +
             ")"
         );
-      } else if (this.currentY - newY < -60) {
+      } else if (this.currentY - newY < -100) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
         this.currentY = newY;
@@ -184,7 +184,7 @@ class vc3dEye {
       }
     } else {
       // 竖屏
-      if (this.currentX - newX > 60) {
+      if (this.currentX - newX > 100) {
         console.log("currentX =" + this.currentX + " newX =" + newX);
         console.log("currentX-newX=" + (this.currentX - newX));
         this.currentX = newX;
@@ -195,7 +195,7 @@ class vc3dEye {
             this.imagePath(this.currentImage, this.angle[this.angleType]) +
             ")"
         );
-      } else if (this.currentX - newX < -60) {
+      } else if (this.currentX - newX < -100) {
         console.log("currentX =" + this.currentX + " newX =" + newX);
         console.log("currentX-newX=" + (this.currentX - newX));
         this.currentX = newX;
