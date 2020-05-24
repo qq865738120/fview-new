@@ -5,6 +5,23 @@ import * as path from "path";
 import Axios from "axios";
 import config from "../config/index";
 import crypto from "crypto";
+import cache from "./cache";
+
+const raw = (args: any) => {
+  var keys = Object.keys(args);
+  keys = keys.sort();
+  var newArgs = {};
+  keys.forEach(function (key) {
+    newArgs[key.toLowerCase()] = args[key];
+  });
+
+  var string = "";
+  for (var k in newArgs) {
+    string += "&" + k + "=" + newArgs[k];
+  }
+  string = string.substr(1);
+  return string;
+};
 
 const app = application();
 app.use(compression());
@@ -53,6 +70,12 @@ app.route("/api/wx/signature").get(async (req, res) => {
 
   console.log("req.query", req.query);
 
+  // 有缓存直接返回
+  if (cache.getCache(req.query.url as string)) {
+    res.send(JSON.parse(cache.getCache("signature")));
+    return;
+  }
+
   if (tokenRes.data.access_token) {
     //token请求成功
     const ticketRes = await Axios.get(
@@ -60,21 +83,26 @@ app.route("/api/wx/signature").get(async (req, res) => {
     );
     if (ticketRes.data.ticket) {
       // ticket拿到
-      const noncestr = crypto
-        .randomBytes(Math.ceil(16 / 2))
-        .toString("hex")
-        .slice(0, 16);
-      const timestamp = new Date().getTime();
-      const str = `jsapi_ticket=${ticketRes.data.ticket}&noncestr=${noncestr}&timestamp=${timestamp}&url=${req.query.url}`;
+      const noncestr = Math.random().toString(36).substr(2, 15);
+      const timestamp = new Date().getTime() / 1000;
+      const str = raw({
+        jsapi_ticket: ticketRes.data.ticket,
+        noncestr,
+        timestamp,
+        url: req.query.url,
+      });
       const hash = crypto.createHash("sha1");
       hash.update(str);
       const signature = hash.digest("hex");
-      res.send({
+      const resData = {
         errcode: 0,
         noncestr,
         timestamp,
         signature,
-      });
+      };
+      // 放入缓存
+      cache.setCache(req.query.url as string, JSON.stringify(resData));
+      res.send(resData);
     } else {
       res.send({
         errcode: ticketRes.data.errcode,
