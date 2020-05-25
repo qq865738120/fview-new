@@ -19,10 +19,9 @@ export default class Index extends React.Component<any, any> {
   async componentDidMount() {
     const wxSignature = await axios.get(
       `https://zoomlion.360view.iotnc.cn/api/wx/signature?url=${encodeURIComponent(
-        "https://zoomlion.360view.iotnc.cn/"
+        window.location.href.split("#")[0]
       )}`
     );
-
     wx.config({
       debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
       appId: config.appId, // 必填，公众号的唯一标识
