@@ -19,7 +19,7 @@ export default class Index extends React.Component<any, any> {
   async componentDidMount() {
     const wxSignature = await axios.get(
       `https://zoomlion.360view.iotnc.cn/api/wx/signature?url=${encodeURIComponent(
-        "https://zoomlion.360view.iotnc.cn/#/"
+        "https://zoomlion.360view.iotnc.cn/"
       )}`
     );
 
