@@ -14,7 +14,7 @@ class Internal extends React.Component<any, any> {
     };
   }
 
-  saync componentDidMount() {
+  async componentDidMount() {
     const current = utils.getQuery("name") as string;
     const index = utils.getQuery("index") as string;
 
@@ -35,9 +35,7 @@ class Internal extends React.Component<any, any> {
       //需在用户可能点击分享按钮前就先调用
       //自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
       wx.onMenuShareAppMessage({
-        title: `中联起重机${current}${
-          index === "0" ? "驾驶室" : "操控室"
-        }`, // 分享标题
+        title: `中联起重机${current}${index === "0" ? "驾驶室" : "操控室"}`, // 分享标题
         desc: "", // 分享描述
         link: "https://zoomlion.360view.iotnc.cn/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl:
@@ -49,9 +47,7 @@ class Internal extends React.Component<any, any> {
 
       //自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）
       wx.onMenuShareAppMessage({
-        title: `中联起重机${current}${
-          index === "0" ? "驾驶室" : "操控室"
-        }`, // 分享标题
+        title: `中联起重机${current}${index === "0" ? "驾驶室" : "操控室"}`, // 分享标题
         desc: "", // 分享描述
         link: "https://zoomlion.360view.iotnc.cn/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
         imgUrl:
