@@ -72,7 +72,7 @@ app.route("/api/wx/signature").get(async (req, res) => {
 
   // 有缓存直接返回
   if (cache.getCache(req.query.url as string)) {
-    res.send(JSON.parse(cache.getCache("signature")));
+    res.send(JSON.parse(cache.getCache(req.query.url as string)));
     return;
   }
 
@@ -81,16 +81,19 @@ app.route("/api/wx/signature").get(async (req, res) => {
     const ticketRes = await Axios.get(
       `https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${tokenRes.data.access_token}&type=jsapi`
     );
+    console.log("ticketRes.data.ticket", ticketRes.data.ticket);
     if (ticketRes.data.ticket) {
       // ticket拿到
       const noncestr = Math.random().toString(36).substr(2, 15);
-      const timestamp = new Date().getTime() / 1000;
+      const timestamp = parseInt(new Date().getTime() / 1000 + "", 10);
       const str = raw({
         jsapi_ticket: ticketRes.data.ticket,
         noncestr,
         timestamp,
         url: req.query.url,
       });
+      console.log("str", str);
+
       const hash = crypto.createHash("sha1");
       hash.update(str);
       const signature = hash.digest("hex");

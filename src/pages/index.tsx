@@ -34,12 +34,12 @@ export default class Index extends React.Component<any, any> {
     wx.ready(() => {
       //需在用户可能点击分享按钮前就先调用
       //自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
-      alert("OK");
       wx.onMenuShareAppMessage({
-        title: "", // 分享标题
+        title: "中联重科起重机VR全景看车", // 分享标题
         desc: "", // 分享描述
-        link: "", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: "", // 分享图标
+        link: "https://zoomlion.360view.iotnc.cn/#/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl:
+          "https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/share-thumb.jpg", // 分享图标
         success: function () {
           // 设置成功
           alert("设置成功updateAppMessageShareData");
@@ -48,9 +48,11 @@ export default class Index extends React.Component<any, any> {
 
       //自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）
       wx.onMenuShareAppMessage({
-        title: "", // 分享标题
-        link: "", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: "", // 分享图标
+        title: "中联重科起重机VR全景看车", // 分享标题
+        desc: "", // 分享描述
+        link: "https://zoomlion.360view.iotnc.cn/#/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl:
+          "https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/share-thumb.jpg", // 分享图标
         success: function () {
           // 设置成功
           alert("设置成功updateTimelineShareData");

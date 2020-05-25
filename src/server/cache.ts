@@ -1,7 +1,7 @@
 // node-cache 保存和获取缓存
 import NodeCache from "node-cache";
 const myCache = new NodeCache({
-  stdTTL: 7200, // 缓存过期时间
+  stdTTL: 7000, // 缓存过期时间
   checkperiod: 120, // 定期检查时间
 });
 
