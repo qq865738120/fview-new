@@ -7,6 +7,7 @@ import Loading from "./components/Loading";
 const wx = require("weixin-js-sdk");
 import config from "../config/index";
 import axios from "axios";
+import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 interface OutMState {
   photoItems: PhotoSwipeItems[];
@@ -23,7 +24,9 @@ class Out extends React.Component<any, OutMState & any> {
       style360: {},
       panoramicStyle: {},
       photoItems: [],
+      detailPhotoItems: [],
       isShow: false,
+      isShowDetail: false,
       isPortrait: true,
       isLoading: true,
       rotate: 0,
@@ -215,18 +218,12 @@ class Out extends React.Component<any, OutMState & any> {
     this.setState({ photoItems: [...photoItems], rotate: -90, isShow: true });
   };
 
-  onHotPointClick = (index: any) => {
-    console.log("index", index);
-    console.log(
-      "url",
-      "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index
-    );
-
-    document.getElementsByClassName("");
+  onHotPointClick = (item: any) => {
+    console.log("index", item);
 
     const photoItems = [
       {
-        src: "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + index,
+        src: "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + item.url,
         w: 1415,
         h: 945,
       },
@@ -234,9 +231,8 @@ class Out extends React.Component<any, OutMState & any> {
     console.log("photoItems", photoItems);
 
     this.setState({
-      photoItems: [...photoItems],
-      isShow: true,
-      currImgIndex: 1,
+      detailPhotoItems: [...photoItems],
+      isShowDetail: true,
       rotate: 0,
     });
   };
@@ -258,7 +254,9 @@ class Out extends React.Component<any, OutMState & any> {
       style360,
       panoramicStyle,
       photoItems,
+      detailPhotoItems,
       isShow,
+      isShowDetail,
       warpStyle,
       isPortrait,
       isLoading,
@@ -268,6 +266,12 @@ class Out extends React.Component<any, OutMState & any> {
     } = this.state;
 
     const outData = new MokeData().getOutList();
+
+    console.log(
+      "11111",
+      outData[currType] &&
+        outData[currType][angle[angleType] || "fv"][currImgIndex - 1].detailImgs
+    );
 
     console.log("DATA", outData[currType], currType, angle[angleType]);
     return (
@@ -357,6 +361,35 @@ class Out extends React.Component<any, OutMState & any> {
                 opacity: 0.4;
               }
             }
+
+            .detail-bar {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            .detail-bar-imgs {
+              width: 1rem;
+              height: 0.7rem;
+              margin: 0 0.05rem;
+            }
+
+            .fade-leave.fade-leave-active,
+            .fade-enter {
+              opacity: 0;
+              transition: opacity 0.2s;
+            }
+            .fade-enter.fade-enter-active,
+            .fade-leave {
+              opacity: 1;
+              transition: opacity 0.2s;
+            }
           `}
         </style>
 
@@ -412,7 +445,7 @@ class Out extends React.Component<any, OutMState & any> {
             </div>
           </div>
           {isLoading && <Loading />}
-          {(
+          {/* {(
             (outData[currType] &&
               outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
                 .hotPoint) ||
@@ -432,7 +465,36 @@ class Out extends React.Component<any, OutMState & any> {
                 display: item.x === 0 && item.y === 0 ? "none" : "block",
               }}
             />
-          ))}
+          ))} */}
+          <section className="detail-bar">
+            <CSSTransitionGroup
+              component="div"
+              transitionName="fade"
+              transitionEnterTimeout={150}
+              transitionLeaveTimeout={100}
+            >
+              {(
+                (outData[currType] &&
+                  outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
+                    .detailImgs) ||
+                []
+              ).map((item: any, index: any) => {
+                return (
+                  item.isShow && (
+                    <img
+                      onClick={this.onHotPointClick.bind(this, item)}
+                      className="detail-bar-imgs"
+                      src={
+                        "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" +
+                        item.url
+                      }
+                      key={item.url}
+                    />
+                  )
+                );
+              })}
+            </CSSTransitionGroup>
+          </section>
         </section>
 
         {isShow && (
@@ -441,6 +503,9 @@ class Out extends React.Component<any, OutMState & any> {
             index={currImgIndex - 1}
             rotate={rotate}
           />
+        )}
+        {isShowDetail && (
+          <PhotoSwipeWap items={detailPhotoItems} index={0} rotate={rotate} />
         )}
       </section>
     );

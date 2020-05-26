@@ -90,12 +90,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.25, y: 2.23 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "2.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.2, y: 2.1 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -104,12 +124,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.15, y: 1.88 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "4.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.15, y: 1.68 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -118,12 +158,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.14, y: 1.48 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "6.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.13, y: 1.18 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -132,12 +192,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0, y: 0 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "8.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0, y: 0 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -146,12 +226,32 @@ export default class MokeData {
               { x: 0.45, y: 2 },
               { x: 0, y: 0 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "10.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0, y: 0 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -160,12 +260,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0, y: 0 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "12.png",
             hotPoint: [
               { x: 0.5, y: 0.1 },
               { x: 0, y: 0 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -174,12 +294,32 @@ export default class MokeData {
               { x: 0.5, y: 0.4 },
               { x: 0.1, y: -1.7 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "14.png",
             hotPoint: [
               { x: 0.5, y: 0.8 },
               { x: 0.1, y: -1.92 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -188,12 +328,32 @@ export default class MokeData {
               { x: 0.45, y: 1.2 },
               { x: 0.1, y: -2.07 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "16.png",
             hotPoint: [
               { x: 0.45, y: 1.35 },
               { x: 0.15, y: -2.23 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
             ],
           },
           {
@@ -202,12 +362,32 @@ export default class MokeData {
               { x: 0.45, y: 1.65 },
               { x: 0.2, y: -2.4 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: false,
+              },
+            ],
           },
           {
             url: "18.png",
             hotPoint: [
               { x: 0.45, y: 1.6 },
               { x: 0.2, y: -2.45 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -216,12 +396,32 @@ export default class MokeData {
               { x: 0.45, y: 1.55 },
               { x: 0.2, y: -2.5 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "20.png",
             hotPoint: [
               { x: 0.45, y: 1.5 },
               { x: 0.2, y: -2.5 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -230,12 +430,32 @@ export default class MokeData {
               { x: 0.45, y: 1.45 },
               { x: 0.2, y: -2.4 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "22.png",
             hotPoint: [
               { x: 0.45, y: 1.4 },
               { x: 0.3, y: -2.1 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -244,12 +464,32 @@ export default class MokeData {
               { x: 0.45, y: 1.35 },
               { x: 0.35, y: -1.6 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "24.png",
             hotPoint: [
               { x: 0.45, y: 1.2 },
               { x: 0.35, y: -1.1 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: true,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -258,12 +498,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.4, y: -1.6 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "26.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.45, y: -0.6 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -272,12 +532,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.45, y: 0 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "28.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.45, y: 0.5 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -286,12 +566,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.45, y: 1 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "30.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.45, y: 1.4 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -300,12 +600,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.45, y: 1.2 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "32.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.4, y: 1.6 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -314,12 +634,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.4, y: 1.9 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "34.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.33, y: 2.3 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
           {
@@ -328,12 +668,32 @@ export default class MokeData {
               { x: 0, y: 0 },
               { x: 0.3, y: 2.25 },
             ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
+            ],
           },
           {
             url: "36.png",
             hotPoint: [
               { x: 0, y: 0 },
               { x: 0.22, y: 2.35 },
+            ],
+            detailImgs: [
+              {
+                url: "0",
+                isShow: false,
+              },
+              {
+                url: "1",
+                isShow: true,
+              },
             ],
           },
         ],
