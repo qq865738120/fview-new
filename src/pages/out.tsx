@@ -371,7 +371,8 @@ class Out extends React.Component<any, OutMState & any> {
               align-items: center;
               justify-content: center;
               width: 100%;
-              background-color: rgba(0, 0, 0, 0.2);
+              background-color: rgba(120, 172, 57, 0.4);
+              box-shadow: 0rem -0.2rem 0.7rem 0px hsla(87, 67%, 17%, 0.55);
             }
 
             .detail-bar-imgs {
