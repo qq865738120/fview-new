@@ -16,7 +16,7 @@ export default class Index extends React.Component<any, any> {
     };
   }
 
-  async componentDidMount() {
+  async UNSAFE_componentWillMount() {
     const wxSignature = await axios.get(
       `https://zoomlion.360view.iotnc.cn/api/wx/signature?url=${encodeURIComponent(
         window.location.href.split("#")[0]
@@ -60,7 +60,10 @@ export default class Index extends React.Component<any, any> {
     this.setState({ isLoading: true });
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 500 + Math.random() * 1000);
+    }, 600);
+  }
+
+  async componentDidMount() {
     setTimeout(() => {
       this.resize();
       window.addEventListener("resize", () => {

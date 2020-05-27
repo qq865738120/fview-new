@@ -33,7 +33,7 @@ class Out extends React.Component<any, OutMState & any> {
     };
   }
 
-  async componentDidMount() {
+  async UNSAFE_componentWillMount() {
     const wxSignature = await axios.get(
       `https://zoomlion.360view.iotnc.cn/api/wx/signature?url=${encodeURIComponent(
         window.location.href.split("#")[0]
@@ -75,10 +75,15 @@ class Out extends React.Component<any, OutMState & any> {
     });
 
     this.setState({ isLoading: true });
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 1000 + Math.random() * 2000);
+    // window.addEventListener("message", (ev) => {
+    //   if (ev.data === "onload") {
+    //     this.setState({ isLoading: false });
+    //     console.log(ev);
+    //   }
+    // });
+  }
 
+  async componentDidMount() {
     document.body.addEventListener("touchmove", this.moveEvent, {
       passive: false,
     });
@@ -141,6 +146,9 @@ class Out extends React.Component<any, OutMState & any> {
       handlerMove: (index: any, ang?: any) => {
         console.log("11111", index, ang);
         this.setState({ currImgIndex: index, angleType: ang });
+      },
+      handlerLoaded: () => {
+        this.setState({ isLoading: false });
       },
     });
 

@@ -12,6 +12,7 @@ class vc3dEye {
   angle: any;
   angleType: any;
   handlerMove: any;
+  handlerLoaded: any;
   currentY: number;
   offsetLeft: any;
   offsetTop: any;
@@ -27,6 +28,7 @@ class vc3dEye {
       angle: any;
       angleType: any;
       handlerMove: any;
+      handlerLoaded: any;
     }
   ) {
     //assigning params
@@ -43,6 +45,7 @@ class vc3dEye {
     this.angle = params.angle;
     this.angleType = params.angleType;
     this.handlerMove = params.handlerMove;
+    this.handlerLoaded = params.handlerLoaded;
     this.offsetLeft = 0;
     this.offsetTop = 0;
 
@@ -288,6 +291,27 @@ class vc3dEye {
           }
         }
       }
+    });
+
+    var imgdefereds: any[] = []; //定义一个操作数组
+    $("img").each(function () {
+      //遍历所有图片，将图片
+      var dfd = $.Deferred(); //定义一个将要完成某个操作的对象
+      $(this).bind("load", function () {
+        dfd.resolve(); //图片加载完成后，表示操作成功
+      });
+      if (this.complete) {
+        //如果图片加载状态为完成，那么也标识操作成功
+        setTimeout(function () {
+          dfd.resolve();
+        }, 1000);
+      }
+      imgdefereds.push(dfd); //将所有操作对象放入数组中
+    });
+    $.when.apply(null, imgdefereds).done(() => {
+      setTimeout(() => {
+        this.handlerLoaded();
+      }, 500);
     });
   }
 
