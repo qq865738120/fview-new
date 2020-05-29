@@ -27,7 +27,7 @@ export default class Loading extends React.Component<any, any> {
         style={{
           width: "100vw",
           height: "100vh",
-          backgroundColor: "rgba(0,0,0,0.7)",
+          backgroundColor: "rgba(0,0,0,0.6)",
           position: "fixed",
           top: 0,
           left: 0,

@@ -23,11 +23,13 @@ class Out extends React.Component<any, OutMState & any> {
       angleType: 0,
       style360: {},
       panoramicStyle: {},
+      detailImagStyle: {},
+      detailContentLeft: 0,
       photoItems: [],
       detailPhotoItems: [],
       isShow: false,
       isShowDetail: false,
-      isPortrait: true,
+      isPortrait: true, // 是否是竖屏
       isLoading: true,
       rotate: 0,
     };
@@ -115,26 +117,6 @@ class Out extends React.Component<any, OutMState & any> {
 
     new eye("#display-3d", {
       imagePath: (index: any, ang?: any) => {
-        // const arr =
-        //   data.data[currType] &&
-        //   data.data[currType][ang || "fv"][index - 1].url.split("/");
-        // const auto = ((arr && arr[5]) || "").split("?")[1];
-        // console.log("auto", auto);
-
-        // return (
-        //   arr[0] +
-        //   "//" +
-        //   arr[2] +
-        //   "/" +
-        //   arr[3] +
-        //   "/" +
-        //   arr[4] +
-        //   "/" +
-        //   index +
-        //   ".png" +
-        //   "?" +
-        //   auto
-        // );
         return outData[currType][ang || "fv"][index - 1].url;
       },
       totalImages: 36,
@@ -145,7 +127,11 @@ class Out extends React.Component<any, OutMState & any> {
       angleType, // 角度类型，对应angle中的数组索引
       handlerMove: (index: any, ang?: any) => {
         console.log("11111", index, ang);
-        this.setState({ currImgIndex: index, angleType: ang });
+        this.setState({
+          currImgIndex: index,
+          angleType: ang,
+          detailContentLeft: 0,
+        });
       },
       handlerLoaded: () => {
         this.setState({ isLoading: false });
@@ -187,6 +173,9 @@ class Out extends React.Component<any, OutMState & any> {
           panoramicStyle: {
             transform: `rotate(0)`,
           },
+          detailImagStyle: {
+            transform: `rotate(0)`,
+          },
           isPortrait: false,
         });
       } else {
@@ -198,7 +187,10 @@ class Out extends React.Component<any, OutMState & any> {
             overflow: "hidden",
           },
           panoramicStyle: {
-            transform: `rotate(0)`,
+            transform: `rotate(90deg)`,
+          },
+          detailImagStyle: {
+            transform: `rotate(90deg)`,
           },
           isPortrait: true,
         });
@@ -207,7 +199,7 @@ class Out extends React.Component<any, OutMState & any> {
   }
 
   onPhotoClick = () => {
-    const { angle, angleType } = this.state;
+    const { angle, angleType, isPortrait } = this.state;
 
     const currType = utils.getQuery("name") as string;
 
@@ -223,17 +215,22 @@ class Out extends React.Component<any, OutMState & any> {
       }
     );
     // this.setState({ photoItems: [] });
-    this.setState({ photoItems: [...photoItems], rotate: -90, isShow: true });
+    this.setState({
+      photoItems: [...photoItems],
+      rotate: isPortrait ? 0 : -90,
+      isShow: true,
+    });
   };
 
   onHotPointClick = (item: any) => {
     console.log("index", item);
+    const { currType, isPortrait } = this.state;
 
     const photoItems = [
       {
-        src: "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" + item.url,
-        w: 1415,
-        h: 945,
+        src: `https://bj.bcebos.com/v1/fview-zl-0416/${currType}-dt/${item.url}`,
+        w: item.width,
+        h: item.height,
       },
     ];
     console.log("photoItems", photoItems);
@@ -241,8 +238,36 @@ class Out extends React.Component<any, OutMState & any> {
     this.setState({
       detailPhotoItems: [...photoItems],
       isShowDetail: true,
-      rotate: 0,
+      rotate: isPortrait ? 90 : 0,
     });
+  };
+
+  onDetailButtonClick = (type: string) => {
+    const { detailContentLeft } = this.state;
+    const dom = document.getElementById("detail-bar-content");
+    const domWidth = utils.px2Rem(dom?.offsetWidth || 0); // dom宽度
+    const stempNumber = 4; // 步长
+    const viewWidth = 6; // 可视宽度
+
+    console.log("detailContentLeft", detailContentLeft);
+
+    console.log("domWidth", domWidth);
+
+    if (type === "left") {
+      if (detailContentLeft - stempNumber < 0) {
+        // 超出元素最大长度
+        this.setState({ detailContentLeft: 0 });
+      } else {
+        this.setState({ detailContentLeft: detailContentLeft - stempNumber });
+      }
+    } else {
+      if (detailContentLeft + stempNumber > domWidth - viewWidth) {
+        // 超出元素最大长度
+        this.setState({ detailContentLeft: domWidth - viewWidth });
+      } else {
+        this.setState({ detailContentLeft: detailContentLeft + stempNumber });
+      }
+    }
   };
 
   onInternalClick(index: any) {
@@ -261,12 +286,13 @@ class Out extends React.Component<any, OutMState & any> {
       currImgIndex,
       style360,
       panoramicStyle,
+      detailImagStyle,
       photoItems,
       detailPhotoItems,
       isShow,
       isShowDetail,
       warpStyle,
-      isPortrait,
+      detailContentLeft,
       isLoading,
       angle,
       angleType,
@@ -280,6 +306,19 @@ class Out extends React.Component<any, OutMState & any> {
       outData[currType] &&
         outData[currType][angle[angleType] || "fv"][currImgIndex - 1].detailImgs
     );
+
+    let count = 0;
+    (
+      (outData[currType] &&
+        outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
+          .detailImgs) ||
+      []
+    ).map((item: any) => {
+      if (item && item.isShow === true) {
+        count++;
+      }
+    });
+    const detailBarWidth = count < 7 ? "6rem" : count * 0.9 + 2 * 0.03 + "rem";
 
     console.log("DATA", outData[currType], currType, angle[angleType]);
     return (
@@ -370,23 +409,49 @@ class Out extends React.Component<any, OutMState & any> {
               }
             }
 
-            .detail-bar {
+            .detail-bar-warp {
               position: absolute;
               top: 0;
               left: 0;
-              height: 1rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
+              width: 100vw;
               background-color: rgba(120, 172, 57, 0.4);
               box-shadow: 0rem -0.2rem 0.7rem 0px hsla(87, 67%, 17%, 0.55);
+              align-items: center;
+              justify-content: center;
+              display: flex;
+            }
+
+            .detail-bar-button {
+              display: inline-block;
+              width: 0.6rem;
+              height: 0.6rem;
+            }
+
+            .detail-bar {
+              height: 1rem;
+              width: 6rem;
+              align-items: center;
+              justify-content: center;
+              display: inline-flex;
+              overflow: hidden;
+              position: relative;
+            }
+
+            .detail-bar-content {
+              align-items: center;
+              justify-content: center;
+              flex-wrap: nowrap;
+              display: inline-flex;
+              position: absolute;
+              left: 0;
             }
 
             .detail-bar-imgs {
-              width: 1rem;
-              height: 0.7rem;
-              margin: 0 0.05rem;
+              width: 0.8rem;
+              height: 0.6rem;
+              margin: 0 0.02rem;
+              border-radius: 0.06rem;
+              border: 0.01rem solid white;
             }
 
             .fade-leave.fade-leave-active,
@@ -406,19 +471,17 @@ class Out extends React.Component<any, OutMState & any> {
           <div id="display-3d" style={{ ...style360 }}></div>
 
           <div id="bottom-bar" className="bottom-bar">
-            {isPortrait && (
-              <div
-                className="panoramic"
-                style={{ ...panoramicStyle }}
-                onClick={this.onPhotoClick}
-              >
-                <img
-                  className="panoramic-icon"
-                  src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
-                ></img>
-                预览图
-              </div>
-            )}
+            <div
+              className="panoramic"
+              style={{ ...panoramicStyle }}
+              onClick={this.onPhotoClick}
+            >
+              <img
+                className="panoramic-icon"
+                src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
+              ></img>
+              预览图
+            </div>
             <div
               onClick={this.onInternalClick.bind(this, 0)}
               className="panoramic"
@@ -454,56 +517,56 @@ class Out extends React.Component<any, OutMState & any> {
             </div>
           </div>
           {isLoading && <Loading />}
-          {/* {(
-            (outData[currType] &&
-              outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
-                .hotPoint) ||
-            []
-          ).map((item: any, index: any) => (
-            <div
-              key={index}
-              className="hot-point"
-              onClick={this.onHotPointClick.bind(this, index)}
-              style={{
-                left: utils.isServer
-                  ? item.x
-                  : utils.px2Rem(window.innerWidth / 2) + item.x + "rem",
-                top: utils.isServer
-                  ? item.y
-                  : utils.px2Rem(window.innerHeight / 2) + item.y + "rem",
-                display: item.x === 0 && item.y === 0 ? "none" : "block",
-              }}
-            />
-          ))} */}
-          <section className="detail-bar">
-            <CSSTransitionGroup
-              component="div"
-              transitionName="fade"
-              transitionEnterTimeout={150}
-              transitionLeaveTimeout={100}
-            >
-              {(
-                (outData[currType] &&
-                  outData[currType][angle[angleType] || "fv"][currImgIndex - 1]
-                    .detailImgs) ||
-                []
-              ).map((item: any, index: any) => {
-                return (
-                  item.isShow && (
-                    <img
-                      onClick={this.onHotPointClick.bind(this, item)}
-                      className="detail-bar-imgs"
-                      src={
-                        "https://bj.bcebos.com/v1/fview-zl-0416/ZTC251V-dt/" +
-                        item.url
-                      }
-                      key={item.url}
-                    />
-                  )
-                );
-              })}
-            </CSSTransitionGroup>
-          </section>
+
+          {outData[currType] && !outData[currType].isHideDetail && (
+            <section className="detail-bar-warp">
+              <img
+                className="detail-bar-button"
+                style={{ paddingLeft: "0.15rem" }}
+                src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/icon-left.png"
+                onClick={this.onDetailButtonClick.bind(this, "left")}
+              />
+              <div className="detail-bar">
+                <div
+                  id="detail-bar-content"
+                  className="detail-bar-content"
+                  style={{
+                    width: detailBarWidth,
+                    left: -detailContentLeft + "rem",
+                  }}
+                >
+                  {(
+                    (outData[currType] &&
+                      outData[currType][angle[angleType] || "fv"][
+                        currImgIndex - 1
+                      ].detailImgs) ||
+                    []
+                  ).map((item: any, index: any) => {
+                    return (
+                      item.isShow && (
+                        <img
+                          onClick={this.onHotPointClick.bind(this, item)}
+                          className="detail-bar-imgs"
+                          src={
+                            `https://bj.bcebos.com/v1/fview-zl-0416/${currType}-dt/` +
+                            item.url
+                          }
+                          key={item.url}
+                          style={detailImagStyle}
+                        />
+                      )
+                    );
+                  })}
+                </div>
+              </div>
+              <img
+                className="detail-bar-button"
+                style={{ paddingRight: "0.15rem" }}
+                src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/icon-right.png"
+                onClick={this.onDetailButtonClick.bind(this, "right")}
+              />
+            </section>
+          )}
         </section>
 
         {isShow && (

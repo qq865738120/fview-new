@@ -113,12 +113,16 @@ export default class Index extends React.Component<any, any> {
         </div>
         <div className="list">
           <div style={{ height: "2rem" }}></div>
+          <img
+            className="banner"
+            src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/banner.png"
+          />
           {list.map((item: any, index: number) => (
             <div
               className="item"
               key={index}
               style={{
-                justifyContent: index % 2 === 0 ? "flex-start" : "flex-end",
+                justifyContent: index % 2 === 0 ? "flex-end" : "flex-start",
               }}
             >
               <img
@@ -158,6 +162,12 @@ export default class Index extends React.Component<any, any> {
               margin-right: 0.5rem;
             }
 
+            .banner {
+              width: 90%;
+              margin: 0 auto;
+              display: block;
+            }
+
             .list {
               height: 100vh;
               width: 100%;
@@ -171,7 +181,7 @@ export default class Index extends React.Component<any, any> {
             }
 
             .list > .item > .item-img {
-              height: 6rem;
+              height: 8rem;
               object-fit: cover;
             }
           `}
