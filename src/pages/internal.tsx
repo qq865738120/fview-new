@@ -11,6 +11,7 @@ class Internal extends React.Component<any, any> {
     super(props);
     this.state = {
       panoramicStyle: {},
+      isShowTips: false,
     };
   }
 
@@ -29,7 +30,12 @@ class Internal extends React.Component<any, any> {
       timestamp: wxSignature.data.timestamp, // 必填，生成签名的时间戳
       nonceStr: wxSignature.data.noncestr, // 必填，生成签名的随机串
       signature: wxSignature.data.signature, // 必填，签名
-      jsApiList: ["checkJsApi", "onMenuShareAppMessage", "onMenuShareTimeline"], // 必填，需要使用的JS接口列表
+      jsApiList: [
+        "checkJsApi",
+        "onMenuShareAppMessage",
+        "onMenuShareTimeline",
+        "hideOptionMenu",
+      ], // 必填，需要使用的JS接口列表
     });
     wx.ready(() => {
       //需在用户可能点击分享按钮前就先调用
@@ -56,6 +62,8 @@ class Internal extends React.Component<any, any> {
           // 设置成功
         },
       });
+
+      wx.hideOptionMenu();
     });
 
     document.title = `中联起重机${current}${
@@ -72,12 +80,19 @@ class Internal extends React.Component<any, any> {
     barDom &&
       barDom.addEventListener("touchmove", this.moveEvent, { passive: false });
 
-    new Viewer({
+    const viewer = new Viewer({
       panorama: outData[current]["int"][index].url,
       container: document.getElementById("viewer-360"), // 放全景图的元素
       navbar: false,
       fisheye: true,
     });
+
+    const viewerTimer = setInterval(() => {
+      if (viewer.prop.ready) {
+        this.setState({ isShowTips: true });
+        clearInterval(viewerTimer);
+      }
+    }, 10);
 
     setTimeout(() => {
       this.resize();
@@ -85,6 +100,10 @@ class Internal extends React.Component<any, any> {
         this.resize();
       });
     }, 0);
+
+    setTimeout(() => {
+      this.setState({ isShowTips: false });
+    }, 4000);
   }
 
   componentWillUnmount() {
@@ -122,7 +141,7 @@ class Internal extends React.Component<any, any> {
   }
 
   render() {
-    const { panoramicStyle } = this.state;
+    const { panoramicStyle, isShowTips } = this.state;
 
     return (
       <section className="internal-page">
@@ -141,6 +160,17 @@ class Internal extends React.Component<any, any> {
             全景
           </div>
         </div>
+
+        {isShowTips && (
+          <img
+            className="tips"
+            style={{
+              left: (window.innerWidth - 400) / 2 + "px",
+              top: (window.innerHeight - 400) / 2 + "px",
+            }}
+            src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/tips-image.png"
+          />
+        )}
 
         <style jsx>
           {`
@@ -182,6 +212,11 @@ class Internal extends React.Component<any, any> {
               width: 0.8rem;
               height: 0.8rem;
               margin-bottom: 0.1rem;
+            }
+
+            .tips {
+              width: 400px;
+              position: absolute;
             }
           `}
         </style>

@@ -28,7 +28,12 @@ export default class Index extends React.Component<any, any> {
       timestamp: wxSignature.data.timestamp, // 必填，生成签名的时间戳
       nonceStr: wxSignature.data.noncestr, // 必填，生成签名的随机串
       signature: wxSignature.data.signature, // 必填，签名
-      jsApiList: ["checkJsApi", "onMenuShareAppMessage", "onMenuShareTimeline"], // 必填，需要使用的JS接口列表
+      jsApiList: [
+        "checkJsApi",
+        "onMenuShareAppMessage",
+        "onMenuShareTimeline",
+        "hideOptionMenu",
+      ], // 必填，需要使用的JS接口列表
     });
     wx.ready(() => {
       //需在用户可能点击分享按钮前就先调用
@@ -55,6 +60,8 @@ export default class Index extends React.Component<any, any> {
           // 设置成功
         },
       });
+
+      wx.hideOptionMenu();
     });
 
     this.setState({ isLoading: true });
@@ -64,6 +71,8 @@ export default class Index extends React.Component<any, any> {
   }
 
   async componentDidMount() {
+    document.title = `中联重科起重机VR全景看车`;
+
     setTimeout(() => {
       this.resize();
       window.addEventListener("resize", () => {
