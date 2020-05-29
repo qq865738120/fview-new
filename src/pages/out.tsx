@@ -479,7 +479,7 @@ class Out extends React.Component<any, OutMState & any> {
             }
 
             .tips {
-              width: 400px;
+              width: 150px;
               position: absolute;
               z-index: 10000;
             }
@@ -603,9 +603,9 @@ class Out extends React.Component<any, OutMState & any> {
           <img
             className="tips"
             style={{
-              left: (window.innerWidth - 400) / 2 + "px",
-              top: (window.innerHeight - 400) / 2 + "px",
-              transform: `rotate(isPortrait ? "0deg" : "90deg")`,
+              left: (window.innerWidth - 150) / 2 + "px",
+              top: (window.innerHeight - 150) / 2 + "px",
+              transform: `rotate(${isPortrait ? "90deg" : "0deg"})`,
             }}
             src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/tips-image.png"
           />

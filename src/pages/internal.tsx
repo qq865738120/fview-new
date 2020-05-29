@@ -165,8 +165,8 @@ class Internal extends React.Component<any, any> {
           <img
             className="tips"
             style={{
-              left: (window.innerWidth - 400) / 2 + "px",
-              top: (window.innerHeight - 400) / 2 + "px",
+              left: (window.innerWidth - 150) / 2 + "px",
+              top: (window.innerHeight - 150) / 2 + "px",
             }}
             src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/tips-image.png"
           />
@@ -215,7 +215,7 @@ class Internal extends React.Component<any, any> {
             }
 
             .tips {
-              width: 400px;
+              width: 150px;
               position: absolute;
               z-index: 10000;
             }

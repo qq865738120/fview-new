@@ -141,7 +141,21 @@ export default class Index extends React.Component<any, any> {
               />
             </div>
           ))}
+          <p className="bottom">
+            <span
+              style={{
+                fontSize: "0.26rem",
+                color: "#e4e4e4",
+                fontWeight: "bold",
+              }}
+            >
+              湖南凝创科技有限公司
+            </span>
+            <br />
+            <span style={{ fontSize: "0.2rem" }}>提供技术支持</span>
+          </p>
         </div>
+
         {isLoading && <Loading />}
         <style jsx>
           {`
@@ -192,6 +206,13 @@ export default class Index extends React.Component<any, any> {
             .list > .item > .item-img {
               height: 8rem;
               object-fit: cover;
+            }
+
+            .bottom {
+              text-align: center;
+              color: #b3b3b3;
+              line-height: 0.4rem;
+              margin: 1rem 0.4rem 0.6rem;
             }
           `}
         </style>
