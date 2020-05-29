@@ -32,6 +32,7 @@ class Out extends React.Component<any, OutMState & any> {
       isPortrait: true, // 是否是竖屏
       isLoading: true,
       rotate: 0,
+      isShowTips: false,
     };
   }
 
@@ -141,7 +142,10 @@ class Out extends React.Component<any, OutMState & any> {
         });
       },
       handlerLoaded: () => {
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false, isShowTips: true });
+        setTimeout(() => {
+          this.setState({ isShowTips: false });
+        }, 3000);
       },
     });
 
@@ -304,6 +308,8 @@ class Out extends React.Component<any, OutMState & any> {
       angle,
       angleType,
       rotate,
+      isShowTips,
+      isPortrait,
     } = this.state;
 
     const outData = new MokeData().getOutList();
@@ -471,6 +477,12 @@ class Out extends React.Component<any, OutMState & any> {
               opacity: 1;
               transition: opacity 0.2s;
             }
+
+            .tips {
+              width: 400px;
+              position: absolute;
+              z-index: 10000;
+            }
           `}
         </style>
 
@@ -585,6 +597,18 @@ class Out extends React.Component<any, OutMState & any> {
         )}
         {isShowDetail && (
           <PhotoSwipeWap items={detailPhotoItems} index={0} rotate={rotate} />
+        )}
+
+        {isShowTips && (
+          <img
+            className="tips"
+            style={{
+              left: (window.innerWidth - 400) / 2 + "px",
+              top: (window.innerHeight - 400) / 2 + "px",
+              transform: `rotate(isPortrait ? "0deg" : "90deg")`,
+            }}
+            src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/tips-image.png"
+          />
         )}
       </section>
     );

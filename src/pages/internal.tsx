@@ -217,6 +217,7 @@ class Internal extends React.Component<any, any> {
             .tips {
               width: 400px;
               position: absolute;
+              z-index: 10000;
             }
           `}
         </style>
