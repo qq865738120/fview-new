@@ -67,7 +67,7 @@ export default class Index extends React.Component<any, any> {
     this.setState({ isLoading: true });
     setTimeout(() => {
       this.setState({ isLoading: false });
-    }, 600);
+    }, 1200);
   }
 
   async componentDidMount() {

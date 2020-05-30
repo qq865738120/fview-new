@@ -258,7 +258,7 @@ class Out extends React.Component<any, OutMState & any> {
     const dom = document.getElementById("detail-bar-content");
     const domWidth = utils.px2Rem(dom?.offsetWidth || 0); // dom宽度
     const stempNumber = 4; // 步长
-    const viewWidth = 6; // 可视宽度
+    const viewWidth = 5.5; // 可视宽度
 
     console.log("detailContentLeft", detailContentLeft);
 
@@ -331,7 +331,8 @@ class Out extends React.Component<any, OutMState & any> {
         count++;
       }
     });
-    const detailBarWidth = count < 4 ? "6rem" : count * 1.7 + 2 * 0.03 + "rem";
+    const detailBarWidth =
+      count < 4 ? "5.5rem" : count * 1.7 + 2 * 0.03 + "rem";
 
     console.log("DATA", outData[currType], currType, angle[angleType]);
     return (
@@ -483,6 +484,18 @@ class Out extends React.Component<any, OutMState & any> {
               position: absolute;
               z-index: 10000;
             }
+            .detail-title {
+              font-size: 0.2rem;
+              color: #444;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              padding-right: 0.3rem;
+            }
+            .detail-title-text {
+              transform: rotate(90deg);
+            }
           `}
         </style>
 
@@ -584,6 +597,11 @@ class Out extends React.Component<any, OutMState & any> {
                 src="https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/icon-right.png"
                 onClick={this.onDetailButtonClick.bind(this, "right")}
               />
+              <div className="detail-title">
+                <span className="detail-title-text">细</span>
+                <span className="detail-title-text">节</span>
+                <span className="detail-title-text">图</span>
+              </div>
             </section>
           )}
         </section>
