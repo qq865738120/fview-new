@@ -499,7 +499,7 @@ class Out extends React.Component<any, OutMState & any> {
                 className="panoramic-icon"
                 src="https://fview-static.cdn.bcebos.com/zoomlion-360view/img/photo.png"
               ></img>
-              预览图
+              放大图
             </div>
             <div
               onClick={this.onInternalClick.bind(this, 0)}
