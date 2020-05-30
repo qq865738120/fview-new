@@ -331,7 +331,7 @@ class Out extends React.Component<any, OutMState & any> {
         count++;
       }
     });
-    const detailBarWidth = count < 7 ? "6rem" : count * 0.9 + 2 * 0.03 + "rem";
+    const detailBarWidth = count < 4 ? "6rem" : count * 1.7 + 2 * 0.03 + "rem";
 
     console.log("DATA", outData[currType], currType, angle[angleType]);
     return (
@@ -441,7 +441,7 @@ class Out extends React.Component<any, OutMState & any> {
             }
 
             .detail-bar {
-              height: 1rem;
+              height: 2rem;
               width: 6rem;
               align-items: center;
               justify-content: center;
@@ -460,8 +460,8 @@ class Out extends React.Component<any, OutMState & any> {
             }
 
             .detail-bar-imgs {
-              width: 0.8rem;
-              height: 0.6rem;
+              width: 1.6rem;
+              height: 1.2rem;
               margin: 0 0.02rem;
               border-radius: 0.06rem;
               border: 0.01rem solid white;
