@@ -486,12 +486,13 @@ class Out extends React.Component<any, OutMState & any> {
             }
             .detail-title {
               font-size: 0.2rem;
-              color: #444;
+              color: #484848;
               display: flex;
               align-items: center;
               justify-content: center;
               flex-direction: column;
               padding-right: 0.3rem;
+              font-weight: bold;
             }
           `}
         </style>
