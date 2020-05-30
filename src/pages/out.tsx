@@ -493,9 +493,6 @@ class Out extends React.Component<any, OutMState & any> {
               flex-direction: column;
               padding-right: 0.3rem;
             }
-            .detail-title-text {
-              transform: rotate(90deg);
-            }
           `}
         </style>
 
@@ -598,9 +595,23 @@ class Out extends React.Component<any, OutMState & any> {
                 onClick={this.onDetailButtonClick.bind(this, "right")}
               />
               <div className="detail-title">
-                <span className="detail-title-text">细</span>
-                <span className="detail-title-text">节</span>
-                <span className="detail-title-text">图</span>
+                <span
+                  style={{ transform: `rotate(${isPortrait ? 90 : 0}deg)` }}
+                >
+                  细
+                </span>
+                <span
+                  style={{ transform: `rotate(${isPortrait ? 90 : 0}deg)` }}
+                  className="detail-title-text"
+                >
+                  节
+                </span>
+                <span
+                  style={{ transform: `rotate(${isPortrait ? 90 : 0}deg)` }}
+                  className="detail-title-text"
+                >
+                  图
+                </span>
               </div>
             </section>
           )}
