@@ -198,13 +198,13 @@ export default class Index extends React.Component<any, any> {
             }
 
             .list > .item {
-              height: 8rem;
+              width: 100%;
               display: flex;
               align-items: center;
             }
 
             .list > .item > .item-img {
-              height: 8rem;
+              width: 100%;
               object-fit: cover;
             }
 
