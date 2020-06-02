@@ -7,6 +7,7 @@ const detailUrl = [
   "IMG_2480.jpg", // 尾部
   "IMG_2484.jpg", // 尾部
   "IMG_2491.jpg", // 头
+  "IMG_2489.jpg",
 ];
 const detailWH = [
   { width: 1417, height: 1030 },
@@ -17,44 +18,45 @@ const detailWH = [
   { width: 1417, height: 1030 },
   { width: 1417, height: 1030 },
   { width: 1417, height: 1030 },
+  { width: 1417, height: 1030 },
 ];
 const isShowArr = [
-  [true, true, true, true, true, true, true, true], // 1
-  [true, true, true, true, true, true, true, true], // 2
-  [true, true, true, true, true, true, true, true], // 3
-  [false, true, true, true, true, true, true, false], // 4
-  [false, true, true, true, true, true, true, false], // 5
-  [false, true, true, true, true, true, true, false], // 6
-  [false, true, true, true, true, true, true, false], // 7
-  [false, true, true, true, true, true, true, false], // 8
-  [false, true, true, true, true, true, true, false], // 9
-  [false, true, true, true, true, true, true, false], // 10
-  [false, true, true, true, true, true, true, false], // 11
-  [false, true, true, true, true, true, true, false], // 12
-  [false, true, true, true, true, true, true, false], // 13
-  [false, true, true, true, true, true, true, false], // 14
-  [false, true, true, true, true, true, true, false], // 15
-  [false, true, true, true, true, true, true, false], // 16
-  [false, true, true, true, true, true, true, false], // 17
-  [false, true, true, true, true, true, true, false], // 18
-  [true, true, true, true, true, true, true, true], // 19
-  [true, true, true, true, true, true, true, true], // 20
-  [true, true, true, true, true, true, true, true], // 21
-  [true, false, false, false, true, false, false, false, true], // 22
-  [true, false, false, false, true, false, false, false, true], // 23
-  [true, false, false, false, true, false, false, false, true], // 24
-  [true, false, false, false, true, false, false, false, true], // 25
-  [true, false, false, false, true, false, false, false, true], // 26
-  [true, false, false, false, true, false, false, false, true], // 27
-  [true, false, false, false, true, false, false, false, true], // 28
-  [true, false, false, false, true, false, false, false, true], // 29
-  [true, false, false, false, true, false, false, false, true], // 30
-  [true, false, false, false, true, false, false, false, true], // 31
-  [true, false, false, false, true, false, false, false, true], // 32
-  [true, false, false, false, true, false, false, false, true], // 33
-  [true, false, false, false, true, false, false, false, true], // 34
-  [true, false, false, false, true, false, false, false, true], // 35
-  [true, false, false, false, true, false, false, false, true], // 36
+  [false, true, true, false, false, true, false, false, false], // 1
+  [false, true, true, false, false, true, false, false, false], // 2
+  [false, false, false, false, false, false, false, false, false], // 3
+  [false, false, false, false, false, false, false, false, false], // 4
+  [false, false, false, false, false, false, false, false, false], // 5
+  [false, false, false, false, false, false, false, false, false], // 6
+  [false, false, false, false, false, false, false, false, false], // 7
+  [false, false, false, false, false, false, false, false, false], // 8
+  [false, false, false, false, false, false, false, false, false], // 9
+  [false, false, false, false, false, false, false, false, false], // 10
+  [false, false, false, false, false, false, false, false, false], // 11
+  [false, false, false, false, false, false, false, false, false], // 12
+  [false, false, false, false, false, false, false, false, false], // 13
+  [false, false, false, false, false, false, false, false, false], // 14
+  [false, false, false, true, true, false, true, false, false], // 15
+  [false, false, false, true, true, false, true, false, false], // 16
+  [true, false, false, false, false, false, false, true, true], // 17
+  [true, false, false, false, false, false, false, true, true], // 18
+  [false, false, false, false, false, false, false, false, false], // 19
+  [false, false, false, false, false, false, false, false, false], // 20
+  [false, false, false, false, false, false, false, false, false], // 21
+  [false, false, false, false, false, false, false, false, false], // 22
+  [false, false, false, false, false, false, false, false, false], // 23
+  [false, false, false, false, false, false, false, false, false], // 24
+  [false, false, false, false, false, false, false, false, false], // 25
+  [false, false, false, false, false, false, false, false, false], // 26
+  [false, false, false, false, false, false, false, false, false], // 27
+  [false, false, false, false, false, false, false, false, false], // 28
+  [false, false, false, false, false, false, false, false, false], // 29
+  [false, false, false, false, false, false, false, false, false], // 30
+  [false, false, false, false, false, false, false, false, false], // 31
+  [false, false, false, false, false, false, false, false, false], // 32
+  [false, false, false, false, false, false, false, false, false], // 33
+  [false, false, false, false, false, false, false, false, false], // 34
+  [false, false, false, false, false, false, false, false, false], // 35
+  [false, false, false, false, false, false, false, false, false], // 36
 ];
 
 const ztc800e: any[] = [];

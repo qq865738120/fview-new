@@ -578,7 +578,7 @@ class Out extends React.Component<any, OutMState & any> {
                           onClick={this.onHotPointClick.bind(this, item)}
                           className="detail-bar-imgs"
                           src={
-                            `https://bj.bcebos.com/v1/fview-zl-0416/${currType}-dt/` +
+                            `https://bj.bcebos.com/v1/fview-zl-0416/${currType}-cx/` +
                             item.url
                           }
                           key={item.url}
