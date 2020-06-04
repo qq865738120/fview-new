@@ -13,6 +13,9 @@ const detailUrl = [
   "IMG_2373.jpg",
   "IMG_2332.jpg",
   "IMG_2334.jpg",
+  "IMG_2337.jpg",
+  "IMG_2355.jpg",
+  "IMG_2375.jpg",
 ];
 const detailWH = [
   { width: 1417, height: 1087 },
@@ -29,6 +32,9 @@ const detailWH = [
   { width: 1417, height: 1087 },
   { width: 1417, height: 1087 },
   { width: 1417, height: 1143 },
+  { width: 1417, height: 1030 },
+  { width: 1417, height: 1228 },
+  { width: 1417, height: 1087 },
 ];
 const isShowArr = [
   [
@@ -42,6 +48,9 @@ const isShowArr = [
     true,
     false,
     true,
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -62,8 +71,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 2
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -94,6 +109,9 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 4
   [
     false,
@@ -110,8 +128,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 5
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -142,6 +166,9 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 7
   [
     false,
@@ -155,6 +182,9 @@ const isShowArr = [
     false,
     false,
     true,
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -174,8 +204,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 9
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -206,8 +242,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 11
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -238,8 +280,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 13
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -270,6 +318,9 @@ const isShowArr = [
     false,
     false,
     true,
+    false,
+    false,
+    false,
   ], // 15
   [
     false,
@@ -286,6 +337,9 @@ const isShowArr = [
     false,
     false,
     true,
+    false,
+    false,
+    false,
   ], // 16
   [
     false,
@@ -301,6 +355,9 @@ const isShowArr = [
     false,
     true,
     true,
+    false,
+    false,
+    false,
     false,
   ], // 17
   [
@@ -318,8 +375,14 @@ const isShowArr = [
     true,
     true,
     false,
+    false,
+    false,
+    false,
   ], // 18
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -350,8 +413,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 20
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -382,8 +451,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 22
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -414,6 +489,9 @@ const isShowArr = [
     false,
     false,
     false,
+    true,
+    true,
+    true,
   ], // 24
   [
     false,
@@ -430,8 +508,14 @@ const isShowArr = [
     false,
     false,
     false,
+    true,
+    true,
+    true,
   ], // 25
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -462,8 +546,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 27
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -494,8 +584,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 29
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -526,8 +622,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 31
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -558,8 +660,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 33
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -590,8 +698,14 @@ const isShowArr = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
   ], // 35
   [
+    false,
+    false,
+    false,
     false,
     false,
     false,
