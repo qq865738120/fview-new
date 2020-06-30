@@ -134,6 +134,27 @@ class vc3dEye {
     console.log(this.currentX, this.currentY);
     const width = window.innerWidth;
     const height = window.innerHeight;
+
+    const flushImageView = () => {
+      const children = this.selector.children();
+      children.map((index, item) => {
+        console.log(
+          item.getAttribute("data"),
+          this.angle[this.angleType],
+          this.currentImage
+        );
+        if (
+          item.getAttribute("data") === this.angle[this.angleType] &&
+          this.currentImage ===
+            parseInt(item.getAttribute("src").split(".")[3].split("/")[2])
+        ) {
+          item.style.opacity = "1";
+        } else {
+          item.style.opacity = "0";
+        }
+      });
+    };
+
     if (width > height) {
       // 横屏
       if (this.currentX - newX > 25) {
@@ -142,13 +163,7 @@ class vc3dEye {
         this.currentX = newX;
         this.currentImage =
           --this.currentImage < 1 ? this.totalImages : this.currentImage;
-        console.log("currentImage=" + this.currentImage);
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       } else if (this.currentX - newX < -25) {
         console.log("currentX =" + this.currentX + " newX =" + newX);
         console.log("currentX-newX=" + (this.currentX - newX));
@@ -156,34 +171,19 @@ class vc3dEye {
         this.currentImage =
           ++this.currentImage > this.totalImages ? 1 : this.currentImage;
         console.log("currentImage=" + this.currentImage);
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       } else if (this.currentY - newY > 100) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
         this.currentY = newY;
         this.angleType = 0;
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       } else if (this.currentY - newY < -100) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
         this.currentY = newY;
         this.angleType = 1;
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       }
     } else {
       // 竖屏
@@ -192,23 +192,14 @@ class vc3dEye {
         console.log("currentX-newX=" + (this.currentX - newX));
         this.currentX = newX;
         this.angleType = 1;
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       } else if (this.currentX - newX < -100) {
         console.log("currentX =" + this.currentX + " newX =" + newX);
         console.log("currentX-newX=" + (this.currentX - newX));
         this.currentX = newX;
         this.angleType = 0;
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+
+        flushImageView();
       } else if (this.currentY - newY > 25) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
@@ -216,12 +207,7 @@ class vc3dEye {
         this.currentImage =
           --this.currentImage < 1 ? this.totalImages : this.currentImage;
         console.log("currentImage=" + this.currentImage);
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       } else if (this.currentY - newY < -25) {
         console.log("currentY =" + this.currentY + " newY =" + newY);
         console.log("currentY - newY = " + (this.currentY - newY));
@@ -229,12 +215,7 @@ class vc3dEye {
         this.currentImage =
           ++this.currentImage > this.totalImages ? 1 : this.currentImage;
         console.log("currentImage=" + this.currentImage);
-        this.selector.css(
-          "background-image",
-          "url(" +
-            this.imagePath(this.currentImage, this.angle[this.angleType]) +
-            ")"
-        );
+        flushImageView();
       }
     }
 
@@ -245,24 +226,26 @@ class vc3dEye {
     //load the first image
     var loadedImages = 2;
     var appropriateImageUrl = this.imagePath(1);
-    this.selector.css("background-image", "url(" + appropriateImageUrl + ")");
+    // this.selector.css("background-image", "url(" + appropriateImageUrl + ")");
     $("<img/>").attr("src", appropriateImageUrl);
 
     this.selector.height(this.height).width(this.width);
 
     //load all other images by force
-    for (var n = 2; n <= this.totalImages; n++) {
+    for (var n = 1; n <= this.totalImages; n++) {
       appropriateImageUrl = this.imagePath(n, this.angle[this.angleType]);
       this.selector.append(
         "<img data=" +
           this.angle[this.angleType] +
           " src='" +
           appropriateImageUrl +
-          "' style='display:none;'>"
+          `' style='opacity:${
+            n === 1 ? "1" : "0"
+          }; width: 100%; height: 100%; position: absolute; top: 0; left: 0;'>`
       );
       $("<img data=" + this.angle[this.angleType] + "/>")
         .attr("src", appropriateImageUrl)
-        .css("display", "none");
+        .css("opacity", "0");
       loadedImages++;
       if (loadedImages >= this.totalImages) {
         $("#VCc").removeClass("onLoadingDiv");
@@ -279,11 +262,11 @@ class vc3dEye {
               item +
               " src='" +
               appropriateImageUrl +
-              "' style='display:none;'>"
+              "' style='opacity:0;width: 100%; height: 100%; position: absolute; top: 0; left: 0;'>"
           );
           $("<img data=" + item + "/>")
             .attr("src", appropriateImageUrl)
-            .css("display", "none");
+            .css("opacity", "0");
           loadedImages++;
           if (loadedImages >= this.totalImages) {
             $("#VCc").removeClass("onLoadingDiv");
