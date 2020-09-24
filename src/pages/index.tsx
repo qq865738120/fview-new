@@ -61,7 +61,7 @@ export default class Index extends React.Component<any, any> {
         },
       });
 
-      wx.hideOptionMenu();
+      // wx.hideOptionMenu();
     });
 
     this.setState({ isLoading: true });
