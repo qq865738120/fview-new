@@ -1,3 +1,4 @@
+// 述略图名字
 const detailUrl = [
   "IMG_2301.jpg", // 头
   "IMG_2303.jpg", // 尾部
@@ -14,6 +15,8 @@ const detailUrl = [
   "IMG_2332.jpg",
   "IMG_2334.jpg",
 ];
+// 述略图的宽度与高度，要以实际图片宽高为准，否则会拉伸
+// 这里第一行对应上面detailUrl数组中的第一行，以此类推，行数要对应好。
 const detailWH = [
   { width: 1417, height: 1087 },
   { width: 1417, height: 1087 },
@@ -32,6 +35,10 @@ const detailWH = [
   { width: 1417, height: 1087 },
   { width: 1417, height: 1143 },
 ];
+// 是否展示缩略图，true表示展示，false表示不展示。
+// 这是一个二维数组，外层数组每一行表示3d旋转中的每一张图
+// 现在有36张图，所以外层数组要有36行，行号与3d旋转图的名字对应，例如：第一个图会使用外层数组的第一行。
+// 内层数组表示哪些缩略图要展示，个数以及行号与detailUrl数组对应，可以参考detailWH数组。
 const isShowArr = [
   [
     false,

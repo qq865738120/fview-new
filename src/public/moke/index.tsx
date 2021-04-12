@@ -23,10 +23,18 @@ export default class MokeData {
     this.imageUrls = imageUrls;
   }
 
+  /**
+   * 获取首页车辆列表
+   *
+   * @returns
+   * @memberof MokeData
+   */
   getAutoList() {
     return [
       {
+        // 车辆型号
         name: "ZTC201E",
+        // 车辆缩略图链接
         image:
           "https://gz.bcebos.com/v1/fview-static/zoomlion-360view/img/201E.png",
       },
@@ -98,6 +106,12 @@ export default class MokeData {
     ];
   }
 
+  /**
+   * 获取内外饰3d旋转图片列表
+   *
+   * @returns {*}
+   * @memberof MokeData
+   */
   getOutList(): any {
     const imageUrls = [];
     for (let i = 1; i <= 36; i++) {
@@ -114,10 +128,15 @@ export default class MokeData {
      * 内外室数据
      */
     const outData: any = {
+      // 型号要与首页配置的型号对应好，完全一样
       ZTC201E: {
+        // 是否展示缩顶部缩略图横条。
         isHideDetail: true,
+        // 外室视角1
         fv: ztc201e,
+        // 外室视角2
         vv: ztc201e,
+        // 内室图片名
         int: [{ url: "ZTC201E1.jpg" }, { url: "ZTC201E2.jpg" }],
       },
       QY25H: {
